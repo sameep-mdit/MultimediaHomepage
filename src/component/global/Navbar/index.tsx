@@ -13,6 +13,7 @@ const NavBar = () => {
       setData(data.data.homepage);
     } catch (error) {
       console.log(error);
+      console.log(error);
     }
   };
   React.useEffect(() => {
