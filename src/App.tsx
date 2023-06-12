@@ -1,3 +1,4 @@
+import NavBar from "./component/global/Navbar";
 import "./index.scss";
 import Home from "./pages/Home";
 
@@ -6,6 +7,7 @@ function App() {
     <>
       <div>
         <Home />
+        <NavBar />
       </div>
     </>
   );

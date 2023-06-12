@@ -1,6 +1,6 @@
 import { axiosInstance } from "../config/axiosInstance";
 
-interface HomepageData {
+export interface HomePageData {
   homepage: Homepage;
 }
 
@@ -24,9 +24,10 @@ interface Currentstatus {
   video: boolean;
   campaign: boolean;
   project: boolean;
-  creatorId: string;
+  createdDate: string;
   updaterId: string;
+  creatorId: string;
 }
 
 export const getHomePage = () =>
-  axiosInstance.get<HomepageData>("/get-homepage");
+  axiosInstance.get<HomePageData>("/get-homepage");

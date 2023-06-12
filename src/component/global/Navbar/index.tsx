@@ -1,17 +1,57 @@
-const Navbar = () => {
+import { Title } from "@mantine/core";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { getHomePage } from "../../../api/homepage";
+
+const NavBar = () => {
+  const [data, setData] = React.useState<any>();
+
+  const HomePageApi = async () => {
+    try {
+      const data = await getHomePage();
+
+      setData(data.data.homepage);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  React.useEffect(() => {
+    HomePageApi();
+  }, []);
+
   return (
     <>
-      <ul className="flex">
-        <li>Home</li>
-        <li>Blog</li>
-        <li>Video</li>
-        <li>Contact</li>
-      </ul>
+      <nav className="hidden md:flex justify-center h-[10vh] items-center text-white bg-sky-700 fixed top-0  w-full m-0 ">
+        <div className="flex gap-4">
+          <NavItems title="Home" href="/" />
+          {data ? (
+            data.current_status["blog"] ? (
+              <NavItems title="Blog" href="/blog" />
+            ) : (
+              <></>
+            )
+          ) : (
+            <></>
+          )}
+          {data ? (
+            data.current_status["video"] ? (
+              <NavItems title="Video" href="/video" />
+            ) : (
+              <></>
+            )
+          ) : (
+            <></>
+          )}
+
+          <NavItems title="Contact" href="/contact" />
+          <NavItems title="Admin Panel" href="/admin-panel" />
+        </div>
+      </nav>
     </>
   );
 };
 
-export default Navbar;
+export default NavBar;
 
 interface INavItems {
   title: string;
