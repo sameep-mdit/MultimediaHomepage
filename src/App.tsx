@@ -1,16 +1,9 @@
-import NavBar from "./component/global/Navbar";
+import { RouterProvider } from "react-router-dom";
 import "./index.scss";
-import Home from "./pages/Home";
+import { router } from "./constants/Routes";
 
 function App() {
-  return (
-    <>
-      <div>
-        <Home />
-        <NavBar />
-      </div>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,14 +1,17 @@
 import React from "react";
-import Navbar from "../../components/global/Navbar";
+import NavBar from "../../component/global/Navbar";
+import { HomeContext } from "../../store/Context/HomeContext";
 
 type IMainWrapper = {
   children: React.ReactNode;
 };
 
 const MainWrapper: React.FC<IMainWrapper> = ({ children }) => {
+  const homepageData = React.useContext(HomeContext);
+  console.log(homepageData, "from mainwrapper");
   return (
     <div className="flex flex-col h-[100vh]">
-      <Navbar />
+      <NavBar />
       <div className="flex-[9] bg-slate-50">{children}</div>
     </div>
   );
