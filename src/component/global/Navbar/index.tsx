@@ -2,39 +2,40 @@ import React from "react";
 import { HomeContext } from "../../../store/Context/HomeContext";
 import { NavLink } from "react-router-dom";
 import { Title } from "@mantine/core";
-import { HomePageData } from "../../../api/homepage";
 
 const NavBar = () => {
   const homepageData = React.useContext(HomeContext);
-  console.log(homepageData, "navbar");
-  const data = { ...homepageData };
+  console.log(homepageData.data, "navbar");
+  React.useEffect(() => {
+    console.log(homepageData.isLoading);
+  }, [homepageData]);
   return (
-    <nav className="hidden md:flex justify-center h-[10vh] items-center text-white bg-sky-700 fixed top-0  w-full m-0 ">
-      <div className="flex gap-4">
-        <NavItems title="Home" href="/" />
-        {homepageData.data ? (
-          homepageData?.current_status.blog ? (
-            <NavItems title="Blog" href="/blog" />
-          ) : (
-            <></>
-          )
+    <div className="flex flex-1 bg-[#0C2D48] justify-between ">
+      <div className="md:flex-1"></div>
+      <nav className="flex flex-1 justify-between items-center border-solid border-2 border-red-300 text-white">
+        <NavLink to={"/"}>
+          <h2>Home</h2>
+        </NavLink>
+        {homepageData.data?.homepage.current_status.blog ? (
+          <NavLink to={"/blogs"}>
+            <h2>Blogs</h2>
+          </NavLink>
         ) : (
           <></>
         )}
-        {data ? (
-          homepageData.current_status["video"] ? (
-            <NavItems title="Video" href="/video" />
-          ) : (
-            <></>
-          )
+        {homepageData.data?.homepage.current_status.video ? (
+          <NavLink to={"/videos"}>
+            <h2>Blogs</h2>
+          </NavLink>
         ) : (
           <></>
         )}
-        <h1>hello gsgsg</h1>
-        <NavItems title="Contact" href="/contact" />
-        <NavItems title="Admin Panel" href="/admin-panel" />
-      </div>
-    </nav>
+        <NavLink to={"/"}>
+          <h2>Contact</h2>
+        </NavLink>
+      </nav>
+      <div className="md:flex-1"></div>
+    </div>
   );
 };
 

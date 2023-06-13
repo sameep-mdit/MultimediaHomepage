@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-
 import { toast } from "react-toastify";
 import { HomePageData, getHomePage } from "../../api/homepage";
 
