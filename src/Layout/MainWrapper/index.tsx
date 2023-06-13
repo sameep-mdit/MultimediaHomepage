@@ -7,8 +7,6 @@ type IMainWrapper = {
 };
 
 const MainWrapper: React.FC<IMainWrapper> = ({ children }) => {
-  const homepageData = React.useContext(HomeContext);
-  console.log(homepageData, "from mainwrapper");
   return (
     <div className="flex flex-col h-[100vh]">
       <NavBar />
