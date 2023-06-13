@@ -9,7 +9,7 @@ const MainWrapper: React.FC<IMainWrapper> = ({ children }) => {
   return (
     <div className="flex flex-col h-[100vh]">
       <NavBar />
-      <div className="flex-[9] bg-slate-50 overflow-y-scroll">{children}</div>
+      <div className="flex-[9] bg-slate-50 overflow-y-scroll ">{children}</div>
     </div>
   );
 };

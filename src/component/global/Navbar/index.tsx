@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <div className="flex flex-1 bg-[#0C2D48] justify-between ">
       <div className="md:flex-1"></div>
-      <nav className="flex flex-1 justify-between items-center border-solid border-2 border-red-300 text-white">
+      <nav className="flex flex-1 justify-between items-center text-white">
         <NavLink to={"/"}>
           <h2>Home</h2>
         </NavLink>
