@@ -3,6 +3,9 @@ import { HomeContext } from "../../../store/Context/HomeContext";
 import { NavLink } from "react-router-dom";
 import { Title } from "@mantine/core";
 
+// ? assets
+import logo from "../../../assets/icons/logo.png";
+
 const NavBar = () => {
   const homepageData = React.useContext(HomeContext);
   console.log(homepageData.data, "navbar");
@@ -10,31 +13,30 @@ const NavBar = () => {
     console.log(homepageData.isLoading);
   }, [homepageData]);
   return (
-    <div className="flex flex-1 bg-[#0C2D48] justify-between ">
-      <div className="md:flex-1"></div>
-      <nav className="flex flex-1 justify-between items-center text-white">
-        <NavLink to={"/"}>
-          <h2>Home</h2>
+    <div className="flex-1 flex justify-between md:px-[20vh] items-center bg-[#003455] text-white">
+      <div>
+        <img src={logo} alt="" className="h-[8vh]" />
+      </div>
+      <div className="flex  md:justify-between">
+        <NavLink to={"/"} className={"md:pr-6"}>
+          <p>Home</p>
         </NavLink>
-        {homepageData.data?.homepage.current_status.blog ? (
-          <NavLink to={"/blogs"}>
-            <h2>Blogs</h2>
+        {!false ? (
+          <NavLink to={"/blogs"} className={"md:pr-6"}>
+            Blogs
           </NavLink>
         ) : (
           <></>
         )}
-        {homepageData.data?.homepage.current_status.video ? (
-          <NavLink to={"/videos"}>
-            <h2>Blogs</h2>
+        {!false ? (
+          <NavLink to={"/Videos"} className={"md:pr-6"}>
+            Videos
           </NavLink>
         ) : (
           <></>
         )}
-        <NavLink to={"/"}>
-          <h2>Contact</h2>
-        </NavLink>
-      </nav>
-      <div className="md:flex-1"></div>
+        <NavLink to={"/Contacts"}>Contacts</NavLink>
+      </div>
     </div>
   );
 };
