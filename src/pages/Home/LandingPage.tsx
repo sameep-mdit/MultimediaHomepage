@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { SvgBlob } from "react-svg-blob";
+import { baseUrl } from "../../constants/Strings";
 
 const LandingPage = () => {
   const homePageData = React.useContext(HomeContext);
@@ -46,7 +47,7 @@ const LandingPage = () => {
         <SvgBlob
           variant="image"
           className="hover:cursor-pointer  h-full puff-in-center "
-          image="https://scontent.fktm10-1.fna.fbcdn.net/v/t1.6435-9/126212254_1143698759361370_982448368751155537_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=174925&_nc_ohc=0w4oPqwkaiYAX_Mck2A&_nc_ht=scontent.fktm10-1.fna&oh=00_AfAKr9oRWS2RwWvRP3PcPk9ri20H5gUgFrurnz0I3jYleg&oe=64AFFF90"
+          image={`${baseUrl}/uploads/${homePageData.data?.homepage.photo}`}
           shapeProps={{ edges: 3, growth: 9, size: 460 }}
         />
       </div>

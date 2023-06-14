@@ -7,9 +7,15 @@ const VideoSection = () => {
   return (
     <div className="h-[100vh]  md:px-[20vh] bg-[white]">
       <h1 className="hover:cursor-pointer">Videos</h1>
-      <h2 className="text-2xl hover:cursor-pointer">{"Entertainment"}</h2>
-      {["item1"].map((item: string, idx: number) => {
-        return <div key={idx}>{item}</div>;
+      {homeCtx.data?.homepage.videos.map((item) => {
+        return (
+          <div>
+            <h2 className="text-xl">{item.name}</h2>
+            {item["videos"].map((video: any) => {
+              return <p>{video.title}</p>;
+            })}
+          </div>
+        );
       })}
     </div>
   );

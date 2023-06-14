@@ -6,7 +6,7 @@ export const dummyHomePageData = {
       heading: "Harry Khanal",
       description:
         "A person who thinks all the time has nothing to think about except thoughts",
-      blog: true,
+      blog: true, 
       video: true,
       campaign: false,
       project: false,
