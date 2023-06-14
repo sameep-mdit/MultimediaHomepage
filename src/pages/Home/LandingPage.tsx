@@ -16,7 +16,7 @@ const LandingPage = () => {
     console.log(homePageData, "after fetched");
   }, [homePageData]);
   return (
-    <div className="h-[90vh] flex-wrap-reverse  bg-[#003455] text-white flex flex-col-reverse md:px-[20vh] md:flex-row ">
+    <div className="h-[90vh] px-8 w-full grid md:grid-cols-2  bg-[#003455] text-white">
       <div className="flex-1 flex  flex-col-reverse md:flex md:flex-row items-center">
         <div className="flex  md:flex-col my-4  md:justify-evenly">
           <FontAwesomeIcon
@@ -46,9 +46,9 @@ const LandingPage = () => {
       <div className="flex-1 flex justify-center items-center ` md:w-auto">
         <SvgBlob
           variant="image"
-          className="hover:cursor-pointer  h-full puff-in-center "
+          className="hover:cursor-pointer w-full  h-full puff-in-center object-contain"
           image={`${baseUrl}/uploads/${homePageData.data?.homepage.photo}`}
-          shapeProps={{ edges: 3, growth: 9, size: 460 }}
+          shapeProps={{ edges: 3, growth: 9,size:400}}
         />
       </div>
     </div>
