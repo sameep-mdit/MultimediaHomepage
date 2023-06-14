@@ -38,6 +38,7 @@ const LandingPage = () => {
           <h1 className="tracking-in-contract-bck">
             {homePageData.data?.homepage.heading}
           </h1>
+
           <p className="">{homePageData.data?.homepage.description}</p>
         </div>
       </div>

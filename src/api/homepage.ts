@@ -29,4 +29,4 @@ interface Currentstatus {
   creatorId: string;
 }
 
-export const getHomePage = () => axiosInstance.get("");
+export const getHomePage = () => axiosInstance.get("/get-homepage");
