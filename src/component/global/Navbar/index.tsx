@@ -13,7 +13,7 @@ const NavBar = () => {
     console.log(homepageData.isLoading);
   }, [homepageData]);
   return (
-    <div className="flex-1 flex justify-between md:px-[20vh] items-center bg-[#003455] text-white">
+    <div className="flex-1 flex justify-between md:px-[20vh] items-center bg-black text-white">
       <div>
         <img src={logo} alt="" className="h-[8vh]" />
       </div>
