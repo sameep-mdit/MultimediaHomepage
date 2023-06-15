@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getDayFrom } from "../../../../utils/date";
 import { imageURL } from "../BlogCardSmall";
-import { baseUrl } from "../../../../constants";
+import { baseUrl } from "../../../../constants/Strings";
 
 type Category = {
   name: string;
