@@ -6,7 +6,7 @@ export const dummyHomePageData = {
       heading: "Harry Khanal",
       description:
         "A person who thinks all the time has nothing to think about except thoughts",
-      blog: true, 
+      blog: true,
       video: true,
       campaign: false,
       project: false,
@@ -45,6 +45,7 @@ export const dummyHomePageData = {
     social: [],
     blogs: [
       {
+        //category
         id: "dec90249-2eb2-493c-88c2-4722f557ca15",
         name: "must watch",
         color: "brown",
@@ -56,6 +57,7 @@ export const dummyHomePageData = {
         updatedDate: "2023-06-14T03:00:36.294Z",
         visibility: true,
         homeVisibility: true,
+        //tyo category ko blog
         blogs: [
           {
             blogId: "669f0492-288c-42c4-911b-0408d200e062",
