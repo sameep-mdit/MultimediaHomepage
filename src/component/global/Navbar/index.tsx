@@ -74,8 +74,10 @@ export const NavBarHamburger = () => {
     console.log(HbCtx.data, "navbar");
   }, [HbCtx]);
 
+
   const [opened, { open, close }] = useDisclosure(false);
 
+  
   return (
     <>
       <Drawer

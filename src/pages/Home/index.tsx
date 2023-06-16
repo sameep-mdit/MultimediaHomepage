@@ -1,4 +1,5 @@
 import MainWrapper from "../../Layout/MainWrapper";
+import FooterPage from "../../component/global/Footer";
 
 import { HomeProvider } from "../../store/Context/HomeContext";
 import LandingPage from "./LandingPage";
@@ -11,6 +12,7 @@ const Home = () => {
         <LandingPage />
         <VideoSection />
       </MainWrapper>
+      <FooterPage />
     </HomeProvider>
   );
 };
