@@ -16,12 +16,13 @@ const ChannelCard: React.FC<IChannelcard> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <div className="flex bg-gray-200 w-[360px] p-4 rounded-2xl hover:cursor-pointer">
+      <div className="flex bg-slate-100 w-[360px] p-4 rounded-2xl hover:cursor-pointer">
         <div className="flex-1 bottom-1 border-red-400 first-letter: mr-2">
           <img src={imageURL} className="aspect-square rounded-full" alt="" />
         </div>
         <div className="flex-[2]">
           <h3 className="font-bold text-2xl">{channelName}</h3>
+          <hr />
           {desc}
         </div>
       </div>

@@ -1,10 +1,10 @@
+
 import React from "react";
 import { Title, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-
 import { getDayFrom } from "../../../../utils/date";
 import { IBlogType } from "../blog";
-import { imageURL } from "../BlogCardSmall";
+
 
 const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
   blogId,
