@@ -20,7 +20,10 @@ const VideoSection = () => {
                 : "bg-white py-5 text-black md:px-[20vh]"
             }
           >
-            <h2>{item.name}</h2>
+            <h2 className="text-2xl font-bold hover:underline hover:cursor-pointer">
+              {item.name}
+            </h2>
+
             <div className="flex ">
               {item.videos.map((video) => {
                 return (

@@ -1,65 +1,39 @@
 import React from "react";
-import { Badge, Title, Text, Button, Image } from "@mantine/core";
+import { Title, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
 import { getDayFrom } from "../../../../utils/date";
+import { IBlogType } from "../blog";
 import { imageURL } from "../BlogCardSmall";
-import { baseUrl } from "../../../../constants";
 
-type Category = {
-  name: string;
-};
-
-type BlogCardProp = {
-  blogId: string;
-  title: string;
-  imageUrl: string;
-  description: string;
-  createdDate: Date;
-  categories: Category[];
-  category?: string;
-};
-
-const BlogCardLarge = (prop: Partial<BlogCardProp>) => {
-  console.log(prop, "this is props");
+const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
+  blogId,
+  title,
+  description,
+  createdDate,
+  blogCoverPhoto,
+}) => {
   const navigate = useNavigate();
   function handleClick() {
-    navigate("/blogdetailpage");
+    navigate(`/blogdetailpage/${blogId}`);
   }
-  const { blogId, title, imageUrl, description, createdDate, category } = prop;
-  imageUrl?.length
-    ? console.log(imageUrl)
-    : console.log("hello from cover photo");
+
   return (
     <article
       key={blogId}
       onClick={handleClick}
-      className="text-black bg-white  max-w-[90vw] sm:max-w-none h-full  border border-solid border-gray-100 rounded-lg hover:border-blue-200"
+      className="text-black bg-white mb-2  md:max-w-[90vw] sm:max-w-none h-full  border border-solid border-gray-100 rounded-lg hover:border-blue-200"
     >
       <div className="w-full h-60  rounded-t-lg overflow-hidden ">
         <img
           className="w-full h-full object-cover image-hover "
-          src={imageUrl ? `${baseUrl}/uploads/${imageUrl}` : imageURL}
+          // src={imageUrl ? `${baseUrl}/uploads/${imageUrl}` : imageURL}
+          // src={blogCoverPhoto ? blogCoverPhoto[0].coverphotoUrl : imageURL}
+          src="https://cdn.pixabay.com/photo/2017/08/10/08/47/laptop-2620118_640.jpg"
           alt={"blog-image"}
         />
       </div>
       <div className="p-4 ">
-        {prop.categories && (
-          <div className="flex gap-2">
-            {prop.categories?.map((item, index) => (
-              <Badge className="" size="xs" key={index}>
-                {item.name}
-              </Badge>
-            ))}
-          </div>
-        )}
-        {category && (
-          <div className="flex gap-2">
-            <Badge className="" size="xs">
-              {category}
-            </Badge>
-          </div>
-        )}
         <Title
           className="text-xl no-underline  md:hover:text-blue-700"
           lineClamp={1}

@@ -29,12 +29,11 @@ export interface blogType {
   title: string;
   description: string;
   status: string;
-  createdDate: Date;
-  updatedDate: Date;
+  createdDate: string;
+  updatedDate: string;
   blogUpdaterId: string;
   blogCoverPhoto: BlogCoverPhoto[];
   blogImage: BlogImage[];
-  categories: Category[];
   category: string;
 }
 

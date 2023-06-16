@@ -109,7 +109,7 @@ export const dummyHomePageData = {
                 updatedDate: "2023-06-14T03:55:39.951Z",
               },
             ],
-          },
+          },  
         ],
       },
     ],
