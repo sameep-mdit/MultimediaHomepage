@@ -15,7 +15,7 @@ const FOOTER_LINK_LIST = [
 
 const FooterPage = () => {
   return (
-    <div className="grid bg-sky-700">
+    <div className="grid bg-black">
       <div className="grid gap-8 sm:grid-cols-2 content-start  text-gray-50 p-6  text-sm">
         <div className="grid">
           <Text className="font-bold text-orange-500	text-3xl">LOGO</Text>
@@ -76,7 +76,7 @@ const FooterPage = () => {
         </div>
       </div>
       <div className="w-full grid justify-items-center gap-1 text-xs ">
-        <div className="flex w-full bg-sky-900 text-gray-400 justify-center p-1 ">
+        <div className="flex w-full bg-black text-gray-400 justify-center p-1 ">
           <Icon className="mt-1" icon="mingcute:copyright-line" />
           <Text>2023 Mr.Wanderer. All Rights Reserved.</Text>
         </div>

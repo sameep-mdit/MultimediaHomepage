@@ -19,15 +19,15 @@ const VideoCard: React.FC<IVideocard> = ({
     <div
       className={
         index % 2 == 0
-          ? "mr-5 rounded w-[350px] h-[360px] text-white"
-          : "mr-5 rounded w-[350px] h-[360px] text-black"
+          ? "mr-5  w-[450px] h-[400px] text-black rounded-md"
+          : "mr-5  w-[450px] h-[400px] text-black rounded-md"
       }
     >
-      <div className=" h-4/5 pointer-events-none">
+      <div className="pointer-events-none  h-[450px]  bg-gray-500 rounded-xl">
         <ReactPlayer width="100%" height="100%" url={link} />
       </div>
-      <div className="flex flex-col p-2 gap-1">
-        <h4>{title}</h4>
+      <div className="flex flex-col py-4 px-5 gap-1 bg-gray-200 rounded-lg">
+        <h2 className="font-semibold text-xl">{title}</h2>
         <hr />
         <p>{createdDate.split("T")[0]}</p>
       </div>
