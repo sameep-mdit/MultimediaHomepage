@@ -11,6 +11,7 @@ const Home = () => {
       <MainWrapper>
         <LandingPage />
         <VideoSection />
+        
         <FooterPage />
       </MainWrapper>
     </HomeProvider>
