@@ -1,7 +1,9 @@
 import React from "react";
 import { HomeContext } from "../../../store/Context/HomeContext";
 import { NavLink } from "react-router-dom";
-import { Title } from "@mantine/core";
+import { Button, Drawer, Title } from "@mantine/core";
+import { Icon } from "@iconify/react";
+import { useDisclosure } from "@mantine/hooks";
 
 // ? assets
 import logo from "../../../assets/icons/logo.png";
@@ -37,6 +39,9 @@ const NavBar = () => {
         )}
         <NavLink to={"/Contacts"}>Contacts</NavLink>
       </div>
+      <nav className="flex  md:hidden ">
+        <NavBarHamburger />
+      </nav>
     </div>
   );
 };
@@ -62,3 +67,35 @@ export const NavItems = ({ title, href }: INavItems) => (
     </Title>
   </NavLink>
 );
+
+export const NavBarHamburger = () => {
+  const HbCtx = React.useContext(HomeContext);
+  React.useEffect(() => {
+    console.log(HbCtx.data, "navbar");
+  }, [HbCtx]);
+
+  const [opened, { open, close }] = useDisclosure(false);
+
+  return (
+    <>
+      <Drawer
+        opened={opened}
+        onClose={close}
+        withCloseButton={true}
+        title={<Title order={3}>Menu</Title>}
+      >
+        <NavLink to={"/"} className={"md:pr-6"}>
+          <p>Home</p>
+        </NavLink>
+        {!false ? <NavLink to={"/blogs"}>Blogs</NavLink> : <></>}
+        {!false ? <NavLink to={"/Videos"}>Videos</NavLink> : <></>}
+        <NavLink to={"/Contacts"}>
+          <p>Contact</p>
+        </NavLink>
+      </Drawer>
+      <Button onClick={open}>
+        <Icon icon="pajamas:hamburger" className="flex  md:hidden " />
+      </Button>
+    </>
+  );
+};
