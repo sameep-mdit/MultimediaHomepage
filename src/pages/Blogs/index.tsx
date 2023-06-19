@@ -1,10 +1,7 @@
-import MainWrapper from "../../Layout/MainWrapper";
-const Blogpage = () => {
-  return (
-    <MainWrapper>
-      <div>hello from Blog</div>
-    </MainWrapper>
-  );
+import React from "react";
+
+const BlogPage = () => {
+  return <div>BlogPage</div>;
 };
 
-export default Blogpage;
+export default BlogPage;
