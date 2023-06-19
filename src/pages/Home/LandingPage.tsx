@@ -48,8 +48,8 @@ const LandingPage = () => {
         <SvgBlob
           variant="image"
           className="hover:cursor-pointer w-full  h-full puff-in-center object-contain"
-          // image={`${baseUrl}/uploads/${homePageData.data?.homepage.photo}`}
-          image="https://scontent.fktm20-1.fna.fbcdn.net/v/t39.30808-6/315751126_1630743573990217_4323941406538844063_n.jpg?_nc_cat=105&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=uENCKo6uMmwAX8ffMSm&_nc_ht=scontent.fktm20-1.fna&oh=00_AfBTWaDHjrB5LP-1gkdc2X-q3MN_aTind1WCU4gtC3angw&oe=648FB9B4"
+          image={`${baseUrl}/uploads/${homePageData.data?.homepage.photo}`}
+          // image="https://scontent.fktm20-1.fna.fbcdn.net/v/t39.30808-6/315751126_1630743573990217_4323941406538844063_n.jpg?_nc_cat=105&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=uENCKo6uMmwAX8ffMSm&_nc_ht=scontent.fktm20-1.fna&oh=00_AfBTWaDHjrB5LP-1gkdc2X-q3MN_aTind1WCU4gtC3angw&oe=648FB9B4"
           shapeProps={{ edges: 3, growth: 9, size: 400 }}
         />
       </div>

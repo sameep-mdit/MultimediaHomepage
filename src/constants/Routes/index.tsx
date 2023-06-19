@@ -8,7 +8,7 @@ export const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/blogs",
+    path: "/blogs/:category",
     element: <Blogpage />,
   },
 ]);

@@ -12,7 +12,7 @@ const VideoSection = () => {
       <h1 className="md:px-[20vh] bg-black text-white pt-12 font-bold hover:cursor-pointer hover:underline">
         Videos
       </h1>
-      {dummyHomePageData.homepage.videos.map((item, idx) => {
+      {homeCtx.data?.homepage.videos.map((item, idx) => {
         return (
           <div
             key={item.id}
@@ -23,8 +23,8 @@ const VideoSection = () => {
             }
           >
             <h2 className="text-3xl">{item.name}</h2>
-            <div className="flex justify-between h-[80vh] pt-10">
-              {item.videos.map((video) => {
+            <div className="md:flex-row flex-col flex justify-between h-[80vh] pt-10">
+              {item.videos.map((video: any) => {
                 return (
                   <VideoCard
                     key={video.video_id}

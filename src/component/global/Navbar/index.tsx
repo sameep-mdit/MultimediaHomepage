@@ -1,7 +1,7 @@
 import React from "react";
 import { HomeContext } from "../../../store/Context/HomeContext";
-import { NavLink } from "react-router-dom";
-import { Button, Drawer, Title } from "@mantine/core";
+import { Link, NavLink } from "react-router-dom";
+import { Button, Drawer, Title, Menu } from "@mantine/core";
 import { Icon } from "@iconify/react";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -23,17 +23,35 @@ const NavBar = () => {
         <NavLink to={"/"} className={"md:pr-6"}>
           <p>Home</p>
         </NavLink>
-        {!false ? (
-          <NavLink to={"/blogs"} className={"md:pr-6"}>
-            Blogs
-          </NavLink>
+        {homepageData.data?.homepage.current_status.blog ? (
+          <Menu trigger="hover" openDelay={100} closeDelay={400}>
+            <Menu.Target>
+              <p className="pr-4 hover:cursor-pointer">Blogs</p>
+            </Menu.Target>
+            <Menu.Dropdown>
+              {homepageData.data.homepage.blogs.map((category) => {
+                return (
+                  <Link to={`/blogs/${category.name}`}>
+                    <Menu.Item>{category.name}</Menu.Item>
+                  </Link>
+                );
+              })}
+            </Menu.Dropdown>
+          </Menu>
         ) : (
           <></>
         )}
-        {!false ? (
-          <NavLink to={"/Videos"} className={"md:pr-6"}>
-            Videos
-          </NavLink>
+        {homepageData.data?.homepage.current_status.video ? (
+          <Menu>
+            <Menu.Target>
+              <p className="pr-4 hover:cursor-pointer">Videos</p>
+            </Menu.Target>
+            <Menu.Dropdown>
+              {homepageData.data?.homepage.videos.map((category) => {
+                return <Menu.Item>{category.name}</Menu.Item>;
+              })}
+            </Menu.Dropdown>
+          </Menu>
         ) : (
           <></>
         )}
@@ -74,10 +92,8 @@ export const NavBarHamburger = () => {
     console.log(HbCtx.data, "navbar");
   }, [HbCtx]);
 
-
   const [opened, { open, close }] = useDisclosure(false);
 
-  
   return (
     <>
       <Drawer
@@ -89,8 +105,20 @@ export const NavBarHamburger = () => {
         <NavLink to={"/"} className={"md:pr-6"}>
           <p>Home</p>
         </NavLink>
-        {!false ? <NavLink to={"/blogs"}>Blogs</NavLink> : <></>}
-        {!false ? <NavLink to={"/Videos"}>Videos</NavLink> : <></>}
+        {!false ? (
+          <NavLink to={"/blogs"}>
+            <p>Blogs</p>
+          </NavLink>
+        ) : (
+          <></>
+        )}
+        {!false ? (
+          <NavLink to={"/Videos"}>
+            <p>Videos</p>
+          </NavLink>
+        ) : (
+          <></>
+        )}
         <NavLink to={"/Contacts"}>
           <p>Contact</p>
         </NavLink>
