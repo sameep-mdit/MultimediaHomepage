@@ -31,7 +31,7 @@ const NavBar = () => {
             <Menu.Dropdown>
               {homepageData.data.homepage.blogs.map((category) => {
                 return (
-                  <Link to={`/blogs/${category.name}`}>
+                  <Link to={`/blogs/${category.id}`}>
                     <Menu.Item>{category.name}</Menu.Item>
                   </Link>
                 );
