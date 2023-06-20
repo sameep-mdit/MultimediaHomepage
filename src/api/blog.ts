@@ -112,7 +112,7 @@ export const getAllBlogsCategory = () =>
   axiosInstance.get(`/get-all-blogs-category`);
 
 export const getAllBlogsCategoryById = async (id: string) => {
- return  axiosInstance.get(`/get-blogs/category/${id}`);
+  return axiosInstance.get(`/get-blogs/category/${id}`);
 };
 export const updateBlog = (id: string, data: BlogFormType) => {
   const dataToUpload = new FormData();

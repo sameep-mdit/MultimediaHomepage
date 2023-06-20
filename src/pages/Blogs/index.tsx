@@ -4,7 +4,6 @@ import { Blogs, blogType } from "../../api/blog";
 import { axiosInstance } from "../../config/axiosInstance";
 import { baseUrl } from "../../constants/Strings";
 import MainWrapper from "../../Layout/MainWrapper";
-import { HomeContext } from "../../store/Context/HomeContext";
 
 const BlogPage = () => {
   const params = useParams();
@@ -49,7 +48,7 @@ const BlogPage = () => {
                       alt=""
                     />
                   );
-                })} 
+                })}
                 <p>{blog.description}</p>
               </>
             </div>

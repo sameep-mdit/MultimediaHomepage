@@ -48,7 +48,11 @@ const NavBar = () => {
             </Menu.Target>
             <Menu.Dropdown>
               {homepageData.data?.homepage.videos.map((category) => {
-                return <Menu.Item>{category.name}</Menu.Item>;
+                return (
+                  <Link to={`/videos/${category.id}`}>
+                    <Menu.Item>{category.name}</Menu.Item>
+                  </Link>
+                );
               })}
             </Menu.Dropdown>
           </Menu>
