@@ -23,7 +23,7 @@ const VideoCard: React.FC<IVideocard> = ({
           : "mr-5  w-[450px] h-[400px] text-black rounded-md"
       }
     >
-      <div className="  h-[450px]  bg-gray-500 rounded-xl">
+      <div className="h-[450px]  bg-gray-500 rounded-xl">
         <ReactPlayer controls={true} width="100%" height="100%" url={link} />
       </div>
       <div className="flex flex-col py-4 px-5 gap-1 bg-gray-200 rounded-lg">

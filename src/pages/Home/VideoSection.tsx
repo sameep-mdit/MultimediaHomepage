@@ -2,6 +2,8 @@ import React from "react";
 import { HomeContext } from "../../store/Context/HomeContext";
 import { dummyHomePageData } from "../../constants/dummy/dummyData";
 import VideoCard from "../../component/global/Cards/VideoCard";
+import { Carousel } from "@mantine/carousel";
+import { Video, Videos } from "../../api/video";
 
 const VideoSection = () => {
   const homeCtx = React.useContext(HomeContext);
@@ -12,31 +14,41 @@ const VideoSection = () => {
       <h1 className="md:px-[20vh] bg-black text-white pt-12 font-bold hover:cursor-pointer hover:underline">
         Videos
       </h1>
-      {homeCtx.data?.homepage.videos.map((item, idx) => {
+      {homeCtx.data?.homepage.videos.map((item: Videos, idx) => {
         return (
           <div
             key={item.id}
             className={
               idx % 2 == 0
-                ? "bg-black py-5 text-white md:px-[20vh] h-[90vh] flex flex-col pt-8"
-                : "bg-white py-5 text-black md:px-[20vh] h-[90vh]"
+                ? "bg-black py-5 text-white md:px-[20vh] h-[90vh] flex flex-col pt-8 justify-around"
+                : "bg-white py-5 text-black md:px-[20vh] h-[90vh] flex flex-col pt-8 justify-around"
             }
           >
             <h2 className="text-3xl">{item.name}</h2>
-            <div className="md:flex-row flex-col flex justify-between h-[80vh] pt-10">
-              {item.videos.map((video: any) => {
+
+            <Carousel
+              height={400}
+              align="start"
+              slideGap="sm"
+              loop
+              slideSize="33.333333%"
+              withIndicators
+            >
+              {item.videos.map((video: Video) => {
                 return (
-                  <VideoCard
-                    key={video.video_id}
-                    title={video.title}
-                    desc={video.description}
-                    link={video.url}
-                    createdDate={video.createdDate}
-                    index={idx}
-                  />
+                  <Carousel.Slide>
+                    <VideoCard
+                      title={video.title}
+                      desc={video.description}
+                      link={video.url}
+                      createdDate={video.createdDate}
+                      index={idx}
+                    />
+                  </Carousel.Slide>
                 );
               })}
-            </div>
+            </Carousel>
+            <div></div>
           </div>
         );
       })}
