@@ -69,8 +69,13 @@ export interface Blogs {
   description: string;
   status: string;
   createdDate: Date;
+  user: user;
   updatedDate: string;
   blogCoverPhoto: BlogCoverPhoto[];
+}
+export interface user {
+  user_id: string;
+  name: string;
 }
 
 interface BlogImage {

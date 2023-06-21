@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { Video, Videos, getAllVideosCategoryById } from "../../api/video";
 import { Text } from "@mantine/core";
 import MainWrapper from "../../Layout/MainWrapper";
+import VideoCard from "../../component/global/Cards/VideoCard";
 
 const VideoPage = () => {
   const params = useParams();
@@ -29,7 +30,16 @@ const VideoPage = () => {
         <Text className="text-3xl">{video?.name}</Text>
         <div>
           {video?.videos.map((video: Video) => {
-            return <p>{video.description}</p>;
+            return (
+              <VideoCard
+                key={video.video_id}
+                title={video.title}
+                desc={video.description}
+                link={video.url}
+                createdDate={video.createdDate}
+                index={0}
+              />
+            );
           })}
         </div>
       </div>
