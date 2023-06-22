@@ -14,6 +14,7 @@ const VideoSection = () => {
       <h1 className="md:px-[20vh] bg-black text-white pt-12 font-bold hover:cursor-pointer hover:underline">
         Videos
       </h1>
+
       {homeCtx.data?.homepage.videos.map((item: Videos, idx) => {
         return (
           <div
@@ -36,7 +37,7 @@ const VideoSection = () => {
             >
               {item.videos.map((video: Video) => {
                 return (
-                  <Carousel.Slide>
+                  <Carousel.Slide key={video.video_id}>
                     <VideoCard
                       title={video.title}
                       desc={video.description}

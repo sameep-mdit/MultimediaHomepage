@@ -24,9 +24,11 @@ const VideoPage = () => {
 
   return (
     <MainWrapper>
+      
       <div className="md:px-[10vw]">
         <Text className="text-4xl mb-4">Videos</Text>
         <hr />
+        
         <Text className="text-3xl">{video?.name}</Text>
         <div className="md:grid  flex flex-col  lg:grid-cols-3 overflow-y-scroll justify-center">
           {video?.videos.map((video: Video) => {
