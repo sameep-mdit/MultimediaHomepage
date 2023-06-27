@@ -1,7 +1,7 @@
 import React from "react";
 import { HomeContext } from "../../../store/Context/HomeContext";
-import { Link, NavLink } from "react-router-dom";
-import { Button, Drawer, Title, Menu } from "@mantine/core";
+import { NavLink } from "react-router-dom";
+import { Button, Drawer, Title } from "@mantine/core";
 import { Icon } from "@iconify/react";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -24,38 +24,16 @@ const NavBar = () => {
           <p>Home</p>
         </NavLink>
         {homepageData.data?.homepage.current_status.blog ? (
-          <Menu trigger="hover" openDelay={100} closeDelay={400}>
-            <Menu.Target>
-              <p className="pr-4 hover:cursor-pointer">Blogs</p>
-            </Menu.Target>
-            <Menu.Dropdown>
-              {homepageData.data.homepage.blogs.map((category) => {
-                return (
-                  <Link to={`/blogs/${category.id}`}>
-                    <Menu.Item>{category.name}</Menu.Item>
-                  </Link>
-                );
-              })}
-            </Menu.Dropdown>
-          </Menu>
+          <NavLink to={"/blogs"}>
+            <p className="px-1">Blogs</p>
+          </NavLink>
         ) : (
           <></>
         )}
         {homepageData.data?.homepage.current_status.video ? (
-          <Menu>
-            <Menu.Target>
-              <p className="pr-4 hover:cursor-pointer">Videos</p>
-            </Menu.Target>
-            <Menu.Dropdown>
-              {homepageData.data?.homepage.videos.map((category) => {
-                return (
-                  <Link to={`/videos/${category.id}`}>
-                    <Menu.Item>{category.name}</Menu.Item>
-                  </Link>
-                );
-              })}
-            </Menu.Dropdown>
-          </Menu>
+          <NavLink to={"/videos"}>
+            <p className="px-2">Videos</p>
+          </NavLink>
         ) : (
           <></>
         )}
