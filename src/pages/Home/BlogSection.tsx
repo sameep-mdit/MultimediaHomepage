@@ -1,8 +1,4 @@
-import { dummyHomePageData } from "../../constants/dummy/dummyData";
-import BlogCardLarge from "../../component/global/Blog/BlogCardLarge";
-import BlogCardSmall from "../../component/global/Blog/BlogCardSmall";
 import PageWrapper from "../../Layout/PageWrapper";
-import { Link } from "react-router-dom";
 
 const BlogSection = () => {
   return (

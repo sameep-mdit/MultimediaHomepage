@@ -7,15 +7,10 @@ type IVideocard = {
   desc: string;
   link: string;
   createdDate: string;
-  index: number;
+  index?: number;
 };
 
-const VideoCard: React.FC<IVideocard> = ({
-  title,
-  link,
-  createdDate,
-  index,
-}) => {
+const VideoCard: React.FC<IVideocard> = ({ title, link, index }) => {
   const [modelStatus, setModelStatus] = React.useState<boolean>(false);
 
   const modelClickHandler = () => {
@@ -30,7 +25,7 @@ const VideoCard: React.FC<IVideocard> = ({
       >
         <div
           className={
-            index % 2 == 0
+            index! % 2 == 0
               ? "mr-5  w-[450px] h-[400px] text-black rounded-md"
               : "mr-5  w-[450px] h-[400px] text-black rounded-md"
           }

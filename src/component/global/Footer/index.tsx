@@ -1,5 +1,4 @@
-import React from "react";
-import style from "./style.module.scss";
+
 
 import { Text, Title, Anchor } from "@mantine/core";
 import { Link } from "react-router-dom";

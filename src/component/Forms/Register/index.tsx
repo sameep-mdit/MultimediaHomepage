@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
-import { TextInput, PasswordInput, Button, Text, Select } from "@mantine/core";
+import { TextInput, PasswordInput, Button,  Select } from "@mantine/core";
 
 import TextLabel from "../../Label";
 import { registerAPI, registerPOST } from "../../../api/api";

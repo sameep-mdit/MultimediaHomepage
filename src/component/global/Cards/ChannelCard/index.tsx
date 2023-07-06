@@ -10,7 +10,7 @@ interface IChannelcard {
 
 const ChannelCard: React.FC<IChannelcard> = ({
   channelName,
-  imageurl,
+  
 
   socials,
 }) => {

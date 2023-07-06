@@ -18,67 +18,6 @@ const Home = () => {
   const data = homePageData?.data?.homepage?.blogs;
   console.log({ data });
 
-  const dataTest = [
-    { blogId: "1", description: "name", createdDate: null, title: " title" },
-    { blogId: "2", description: "name", createdDate: null, title: " title" },
-    { blogId: "3", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "4", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "5", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "6", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "7", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "8", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "9", description: "name", createdDate: null, title: " title" },
-    { blogId: "1", description: "name", createdDate: null, title: " title" },
-    { blogId: "2", description: "name", createdDate: null, title: " title" },
-    { blogId: "3", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "4", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "5", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "6", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "7", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "8", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "9", description: "name", createdDate: null, title: " title" },
-    { blogId: "1", description: "name", createdDate: null, title: " title" },
-    { blogId: "2", description: "name", createdDate: null, title: " title" },
-    { blogId: "3", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "4", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "5", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "6", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "7", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "8", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "9", description: "name", createdDate: null, title: " title" },
-    { blogId: "1", description: "name", createdDate: null, title: " title" },
-    { blogId: "2", description: "name", createdDate: null, title: " title" },
-    { blogId: "3", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "4", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "5", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "6", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "7", description: "name", createdDate: null, title: " title" },
-
-    { blogId: "8", description: "name", createdDate: null, title: " title" },
-  ];
-
   return (
     <>
       <NavBar />

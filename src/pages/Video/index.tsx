@@ -59,7 +59,7 @@ import { axiosInstance } from "../../config/axiosInstance";
 import MainWrapper from "../../Layout/MainWrapper";
 
 import { useDisclosure } from "@mantine/hooks";
-import { Box, Button, Collapse, Title } from "@mantine/core";
+import { Box, Collapse, Title } from "@mantine/core";
 
 import { Link } from "react-router-dom";
 import { Videos } from "../../api/video";
@@ -68,7 +68,7 @@ import VideoCard from "../../component/global/Cards/VideoCard";
 const BlogPage = () => {
   const [videos, setVideos] = React.useState<Videos[]>();
   const [opened, { toggle }] = useDisclosure(false);
-
+  console.log(toggle);
   const asyncSideEffect = async () => {
     try {
       const res = await axiosInstance.get("/get-all-videos-category");
@@ -89,7 +89,7 @@ const BlogPage = () => {
 
   return (
     <MainWrapper>
-      {videos?.map((item, index) => {
+      {videos?.map((item) => {
         return (
           <Box mx="auto" className="px-[10vw]">
             <Title order={3}>{item.name}</Title>

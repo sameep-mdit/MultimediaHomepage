@@ -7,13 +7,13 @@ export interface BlogFormType {
   category: string[];
 }
 
-type baseType = {
+export type baseType = {
   createdDate: Date;
   creatorId: string;
   updatedDate: Date;
   updaterId: string;
 };
-type CoverphotoType = {
+export type CoverphotoType = {
   id: string;
   status: string;
   coverphotoUrl: string;

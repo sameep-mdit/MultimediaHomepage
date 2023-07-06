@@ -34,7 +34,7 @@ import { axiosInstance } from "../config/axiosInstance";
 //   updaterId: string;
 // }
 
-interface VideoPageData {
+export interface VideoPageData {
   videos: Videos;
 }
 

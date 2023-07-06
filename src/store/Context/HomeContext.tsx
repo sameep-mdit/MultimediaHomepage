@@ -19,7 +19,6 @@ const defaultData: HomeContext = {
         video: false,
         campaign: false,
         project: false,
-        notice: "Loading",
 
         creatorId: "Loading",
         updaterId: "Loading",
