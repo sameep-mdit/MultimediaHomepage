@@ -15,8 +15,8 @@ const BlogCardSmall: React.FC<Partial<IBlogType>> = ({
   console.log(blogCoverPhoto, createdDate);
 
   return (
-    <article className="flex border border-solid mx-2 bg-white text-black border-gray-200 rounded hover:border-blue-200">
-      <div className="w-4/12 max-h-48 overflow-hidden min-h-48  h-full">
+    <article className="border w-full  h-full grid grid-cols-3 min-h-32 border-solid mx-2 bg-white text-black border-gray-200 rounded-lg hover:border-blue-200">
+      <div className="w-full  h-full  overflow-hidden rounded-l-lg">
         <img
           className="w-full h-full object-cover image-hover"
           src={
@@ -24,13 +24,15 @@ const BlogCardSmall: React.FC<Partial<IBlogType>> = ({
           }
         />
       </div>
-      <div className="p-4 flex-1 w-8/12 text-xs">
-        <Title lineClamp={2} className="text-lg">
+      <div className="p-4 col-span-2 text-xs">
+        <Text className="text-xs text-zinc-600">
+          {getDayFrom(new Date(createdDate!))}
+        </Text>
+        <Title lineClamp={1} className="text-lg leading-none">
           {title ?? ""}
         </Title>
-        <p>{description}</p>
-        <Text className="text-end text-xs mt-1 text-blue-600">
-          {getDayFrom(new Date(createdDate!))}
+        <Text lineClamp={3} className="mt-2">
+          {description}
         </Text>
       </div>
     </article>

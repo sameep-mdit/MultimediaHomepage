@@ -66,6 +66,9 @@ export interface Video {
   updaterId: string;
 }
 
+export const getAllVideosCategory = () =>
+  axiosInstance.get(`/get-all-videos-category`);
+
 export const getAllVideosCategoryById = async (id: string) => {
   return axiosInstance.get(`/get-videos/category/${id}`);
 };

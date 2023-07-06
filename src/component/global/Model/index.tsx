@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "@mantine/core";
+import { Text, Modal } from "@mantine/core";
 
 type ModelCard = {
   isActive: boolean;
@@ -9,25 +9,23 @@ type ModelCard = {
 };
 
 const ModelCard = ({ isActive, closeHandler, children, title }: ModelCard) => {
-  return isActive ? (
-    <section className="fixed top-0 left-0 overflow-hidden z-50 w-screen h-screen">
-      <div className="flex justify-center items-center h-full w-full relative">
-        <div
-          className="absolute w-full h-full bg-black opacity-75 cursor-default"
-          onClick={closeHandler}
-        ></div>
-        <div className="z-30 rounded grid">
-          {children}
-          {title && (
-            <Text className="text-white cursor-default text-center font-normal ">
-              Title: {title}
-            </Text>
-          )}
-        </div>
+  return (
+    <Modal
+      color="dark"
+      title={
+        <Text className="text-lg font-semibold leading-none cursor-default">
+          Title: {title}
+        </Text>
+      }
+      opened={isActive}
+      onClose={closeHandler}
+      fullScreen
+      transitionProps={{ transition: "fade", duration: 200 }}
+    >
+      <div className="p-4 grid w-full h-full justify-items-center bg-gray-900">
+        {children}
       </div>
-    </section>
-  ) : (
-    <></>
+    </Modal>
   );
 };
 

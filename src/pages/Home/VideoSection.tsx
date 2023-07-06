@@ -4,6 +4,8 @@ import { dummyHomePageData } from "../../constants/dummy/dummyData";
 import VideoCard from "../../component/global/Cards/VideoCard";
 import { Carousel } from "@mantine/carousel";
 import { Video, Videos } from "../../api/video";
+import PageWrapper from "../../Layout/PageWrapper";
+import { Text } from "@mantine/core";
 
 const VideoSection = () => {
   const homeCtx = React.useContext(HomeContext);
@@ -11,26 +13,26 @@ const VideoSection = () => {
   console.log(dummyHomePageData.homepage.videos);
   return (
     <div>
-      <h1 className="md:px-[20vh] bg-black text-white pt-12 font-bold hover:cursor-pointer hover:underline">
+      <h1 className=" p-3 text-center text-black pt-12 font-bold hover:cursor-pointer">
         Videos
       </h1>
 
-      
-
       {homeCtx.data?.homepage.videos.map((item: Videos, idx) => {
         return (
-          <div
+          <PageWrapper
             key={item.id}
             className={
               idx % 2 == 0
-                ? "bg-black py-5 text-white md:px-[20vh] h-[90vh] flex flex-col pt-8 justify-around"
-                : "bg-white py-5 text-black md:px-[20vh] h-[90vh] flex flex-col pt-8 justify-around"
+                ? "bg-gray-800 py-5 text-white h-[90vh] flex flex-col pt-8 "
+                : "bg-white py-5 text-black h-[90vh] flex flex-col pt-8 "
             }
           >
-            <h2 className="text-3xl">{item.name}</h2>
+            <div className="flex justify-between p-4">
+              <h2 className="text-3xl">{item.name}</h2>
+              <Text></Text>
+            </div>
 
             <Carousel
-              height={400}
               align="start"
               slideGap="sm"
               loop
@@ -51,8 +53,7 @@ const VideoSection = () => {
                 );
               })}
             </Carousel>
-            <div></div>
-          </div>
+          </PageWrapper>
         );
       })}
     </div>

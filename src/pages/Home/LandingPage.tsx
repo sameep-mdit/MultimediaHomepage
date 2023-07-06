@@ -1,4 +1,7 @@
 import React from "react";
+import { Carousel } from "@mantine/carousel";
+import { Button, createStyles, getStylesRef } from "@mantine/core";
+import { Icon } from "@iconify/react";
 import { HomeContext } from "../../store/Context/HomeContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,54 +9,116 @@ import {
   faInstagramSquare,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
+import Parser from "html-react-parser";
 
-import { SvgBlob } from "react-svg-blob";
 import { baseUrl } from "../../constants/Strings";
+import PageWrapper from "../../Layout/PageWrapper";
 
+const useStyles = createStyles(() => ({
+  controls: {
+    ref: getStylesRef("controls"),
+    transition: "opacity 150ms ease",
+    opacity: 0,
+  },
+
+  root: {
+    "&:hover": {
+      [`& .${getStylesRef("controls")}`]: {
+        opacity: 1,
+      },
+    },
+  },
+}));
 const LandingPage = () => {
+  const { classes } = useStyles();
+  const submitIcon = () => {
+    console.log("hwllo this is from social links");
+    {
+      homePageData?.data?.homepage?.social.map((item) => {
+        return (
+          <>
+            {item.name}
+            {item.url}
+          </>
+        );
+      });
+    }
+  };
+
   console.log(baseUrl);
   const homePageData = React.useContext(HomeContext);
   React.useEffect(() => {
     console.log(homePageData, "after fetched");
   }, [homePageData]);
   return (
-    <div className="h-[90vh] md:px-[20vh] w-full flex flex-col-reverse bg-white md:flex-row">
-      <div className="flex-1 flex flex-col-reverse md:flex md:flex-row items-center">
-        <div className="flex md:flex-col my-4  md:justify-evenly">
-          <FontAwesomeIcon
-            icon={faFacebookSquare}
-            size="2x"
-            className="py-2 pr-2 hover:cursor-pointer  puff-in-center  "
-          />
-          <FontAwesomeIcon
-            icon={faInstagramSquare}
-            size="2x"
-            className="py-2 pr-2 hover:cursor-pointer  puff-in-center "
-          />
-          <FontAwesomeIcon
-            icon={faYoutubeSquare}
-            size="2x"
-            className="py-2 pr-2 hover:cursor-pointer puff-in-center "
-          />
-        </div>
-        <div className="text-justify px-5 min-w-[360px]">
-          <h1 className="tracking-in-contract-bck">
-            {homePageData.data?.homepage.heading}
-          </h1>
+    <>
+      <Carousel classNames={classes} dragFree slideGap="none" align="center">
+        {homePageData.data?.homepage?.notice?.map((item) => {
+          return (
+            <Carousel.Slide>
+              <div className="text-center text-xs font-semibold bg-yellow-200 w-full p-1 cursor-default">
+                {Parser(item?.notice)}
+              </div>
+            </Carousel.Slide>
+          );
+        })}
+      </Carousel>
 
-          <p className="">{homePageData.data?.homepage.description}</p>
+      <PageWrapper>
+        <div className="h-[90vh]  w-full flex flex-col-reverse bg-white md:flex-row">
+          <div className="flex-1 flex flex-col-reverse md:flex md:flex-row items-center">
+            <div className="flex md:flex-col   md:justify-evenly">
+              <div
+                onClick={() => {
+                  submitIcon();
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faFacebookSquare}
+                  size="2x"
+                  className="py-2 pr-2 hover:cursor-pointer  puff-in-center  "
+                />
+                <FontAwesomeIcon
+                  icon={faInstagramSquare}
+                  size="2x"
+                  className="py-2 pr-2 hover:cursor-pointer  puff-in-center "
+                />
+                <FontAwesomeIcon
+                  icon={faYoutubeSquare}
+                  size="2x"
+                  className="py-2 pr-2 hover:cursor-pointer puff-in-center "
+                />
+              </div>
+            </div>
+            <div className="text-justify px-5  ">
+              <h1 className="tracking-in-contract-bck text-6xl mb-4">
+                {homePageData.data?.homepage.heading}
+              </h1>
+
+              <p className="">{homePageData.data?.homepage.description}</p>
+              <a href="#contact-section">
+                <Button
+                  color="dark"
+                  radius="md"
+                  size="md"
+                  className="mt-8 px-8"
+                  leftIcon={<Icon icon="ic:round-contact-page" />}
+                >
+                  Contact Us
+                </Button>
+              </a>
+            </div>
+          </div>
+          <div className="flex-1 flex justify-center items-center ` md:w-auto">
+            <img
+              className="w-full md:w-2/3 h-[80vh] md:h-[60vh] object-cover"
+              src={`${baseUrl}/uploads/${homePageData.data?.homepage.photo}`}
+              alt="hero-image"
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex-1 flex justify-center items-center ` md:w-auto">
-        <SvgBlob
-          variant="image"
-          className="hover:cursor-pointer w-full  h-full puff-in-center object-contain"
-          image={`${baseUrl}/uploads/${homePageData.data?.homepage.photo}`}
-          // image="https://scontent.fktm20-1.fna.fbcdn.net/v/t39.30808-6/315751126_1630743573990217_4323941406538844063_n.jpg?_nc_cat=105&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=uENCKo6uMmwAX8ffMSm&_nc_ht=scontent.fktm20-1.fna&oh=00_AfBTWaDHjrB5LP-1gkdc2X-q3MN_aTind1WCU4gtC3angw&oe=648FB9B4"
-          shapeProps={{ edges: 3, growth: 9, size: 400 }}
-        />
-      </div>
-    </div>
+      </PageWrapper>
+    </>
   );
 };
 

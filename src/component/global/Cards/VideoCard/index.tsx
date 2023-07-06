@@ -44,9 +44,9 @@ const VideoCard: React.FC<IVideocard> = ({
             />
           </div>
           <div>
-            <h2 className="font-semibold text-xl">{title}</h2>
+            {/* <h2 className="font-semibold text-xl">{title}</h2>
             <hr />
-            <p>{createdDate.split("T")[0]}</p>
+            <p>{createdDate.split("T")[0]}</p> */}
           </div>
         </div>
       </article>
@@ -56,7 +56,7 @@ const VideoCard: React.FC<IVideocard> = ({
         title={title}
       >
         <div className="z-50">
-          <ReactPlayer width="100vw" height="100vh" controls url={link} />
+          <ReactPlayer width="90vw" height="90vh" controls url={link} />
         </div>
       </ModelCard>
     </>

@@ -19,6 +19,8 @@ const defaultData: HomeContext = {
         video: false,
         campaign: false,
         project: false,
+        notice: "Loading",
+
         creatorId: "Loading",
         updaterId: "Loading",
         createdDate: "Loading",
@@ -31,6 +33,7 @@ const defaultData: HomeContext = {
       social: [],
       blogs: [],
       videos: [],
+      notice: [],
     },
   },
   isLoading: true,
@@ -38,7 +41,7 @@ const defaultData: HomeContext = {
 
 export const HomeContext = React.createContext(defaultData);
 
-export const HomeProvider = ({ children }: { children: ReactNode }) => {
+export const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const [data, setData] = React.useState<HomePageData>(
     defaultData.data! as HomePageData
   );
@@ -51,7 +54,7 @@ export const HomeProvider = ({ children }: { children: ReactNode }) => {
       setIsLoading(false);
     } catch (err) {
       toast("Network Error");
-      setIsLoading(false);
+      setIsLoading(true);
     }
   };
 

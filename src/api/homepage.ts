@@ -4,18 +4,55 @@ export interface HomePageData {
   homepage: Homepage;
 }
 
-interface Homepage {
+export interface Homepage {
   current_status: Currentstatus;
   photo: string;
   heading: string;
   description: string;
-  channels: any[];
-  social: any[];
+  channels: Channel_data[];
+  social: social_links[];
   blogs: any[];
   videos: any[];
+  notice: Notice[];
 }
 
-interface Currentstatus {
+export interface Channel_data {
+  channel_id: string;
+  name: string;
+  image: string;
+  url: string;
+  socials: Channel_socailinks[];
+}
+
+export interface Channel_socailinks {
+  social_id: string;
+  name: string;
+  url: string;
+  status: string;
+  createdDate: string;
+  updatedDate: string;
+  logo: string;
+}
+
+export interface social_links {
+  social_id: string;
+  name: string;
+  logo: string;
+  url: string;
+  status: string;
+  createdDate: string;
+  updatedDate: string;
+}
+
+export interface Notice {
+  notice_id: string;
+  notice: string;
+  staus: string;
+  createdDate: string;
+  updatedDated: string;
+}
+
+export interface Currentstatus {
   homepage_id: string;
   photo: string;
   heading: string;

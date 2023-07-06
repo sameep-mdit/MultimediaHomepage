@@ -1,60 +1,80 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { Blogs, blogType } from "../../api/blog";
+
+import { blogType } from "../../api/blog";
 import { axiosInstance } from "../../config/axiosInstance";
-import { baseUrl } from "../../constants/Strings";
+
 import MainWrapper from "../../Layout/MainWrapper";
 
+import BlogCardLarge from "../../component/global/Blog/BlogCardLarge";
+
+import { useDisclosure } from "@mantine/hooks";
+import { Box, Button, Collapse, Title } from "@mantine/core";
+
+import { Link } from "react-router-dom";
+
 const BlogPage = () => {
-  const params = useParams();
-  const id: string = params.id!;
-  const [blogs, setBlogs] = React.useState<blogType>();
+  const [blogs, setBlogs] = React.useState<blogType[]>();
+  const [opened, { toggle }] = useDisclosure(false);
 
-  // const NavBar = () => {
-  //   const homepageData = React.useContext(HomeContext);
-  //   console.log(homepageData.data, "navbar");
-  //   React.useEffect(() => {
-  //     console.log(homepageData.isLoading);
-  //   }, [homepageData]);
-
-  const asyncSideEffect = async (id: string) => {
+  const asyncSideEffect = async () => {
     try {
-      const res = await axiosInstance.get("/get-blogs/category/" + id);
-      setBlogs(res.data.blogs);
-      console.log({ ...res.data });
+      const res = await axiosInstance.get("/get-all-blogs-category");
+      setBlogs(res.data.data);
+      console.log(res.data.data);
     } catch (error) {
       console.log(error);
     }
   };
   React.useEffect(() => {
-    console.log(id);
-    asyncSideEffect(id);
+    try {
+      console.log("hello");
+      asyncSideEffect();
+    } catch (error) {
+      console.log("error");
+    }
   }, []);
 
   return (
     <MainWrapper>
-      <>
-        <div>{blogs?.name}</div>
-        {blogs?.blogs.map((blog: Blogs) => {
-          return (
-            <div className="flex">
-              <p>{blog.title}</p>
-              <>
-                {blog.blogCoverPhoto.map((cp) => {
-                  return (
-                    <img
-                      key={cp.id}
-                      src={baseUrl + "/uploads/" + cp.coverphotoUrl}
-                      alt=""
+      {blogs?.map((item) => {
+        return (
+          <Box mx="auto" className="px-[10vw]">
+            <Title order={3}>{item.name}</Title>
+            <div className="flex justify-end mb-4">
+              <Button onClick={toggle}>See More</Button>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              {item.blogs.slice(0, 3).map((blog) => {
+                return (
+                  <Link to={"/blogs/" + blog.blogId}>
+                    <BlogCardLarge
+                      title={blog.title}
+                      description={blog.description}
+                      createdDate={blog.createdDate}
                     />
+                  </Link>
+                );
+              })}
+            </div>
+            <Collapse in={opened}>
+              <div className="grid md:grid-cols-3 gap-4">
+                {item.blogs.slice(4, item.blogs.length).map((blog) => {
+                  return (
+                    <Link to={"/blogs/" + blog.blogId}>
+                      <BlogCardLarge
+                        title={blog.title}
+                        description={blog.description}
+                        createdDate={blog.createdDate}
+                      />
+                    </Link>
                   );
                 })}
-                <p>{blog.description}</p>
-              </>
-            </div>
-          );
-        })}
-      </>
+              </div>
+            </Collapse>
+          </Box>
+        );
+      })}
     </MainWrapper>
   );
 };

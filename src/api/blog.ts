@@ -86,7 +86,7 @@ interface BlogImage {
   updatedDate: string;
 }
 
-interface BlogCoverPhoto {
+export interface BlogCoverPhoto {
   id: string;
   status: string;
   coverphotoUrl: string;

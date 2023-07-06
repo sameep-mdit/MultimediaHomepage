@@ -1,6 +1,7 @@
 import axios from "axios";
+import { baseUrl } from "../constants/Strings";
 export const axiosInstance = axios.create({
-  baseURL: "http://192.168.1.79:3000",
+  baseURL: baseUrl,
   headers: {
     Authorization: localStorage?.getItem("token") ?? "",
   },

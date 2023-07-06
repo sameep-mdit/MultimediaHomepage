@@ -1,52 +1,12 @@
 import React from "react";
 import { HomeContext } from "../../../store/Context/HomeContext";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Button, Drawer, Title } from "@mantine/core";
 import { Icon } from "@iconify/react";
 import { useDisclosure } from "@mantine/hooks";
 
 // ? assets
 import logo from "../../../assets/icons/logo.png";
-
-const NavBar = () => {
-  const homepageData = React.useContext(HomeContext);
-  console.log(homepageData.data, "navbar");
-  React.useEffect(() => {
-    console.log(homepageData.isLoading);
-  }, [homepageData]);
-  return (
-    <div className="flex-1  flex justify-between md:px-[20vh] items-center bg-black text-white">
-      <div>
-        <img src={logo} alt="" className="h-[8vh]" />
-      </div>
-      <div className="md:flex hidden   md:justify-between">
-        <NavLink to={"/"} className={"md:pr-6"}>
-          <p>Home</p>
-        </NavLink>
-        {homepageData.data?.homepage.current_status.blog ? (
-          <NavLink to={"/blogs"}>
-            <p className="px-1">Blogs</p>
-          </NavLink>
-        ) : (
-          <></>
-        )}
-        {homepageData.data?.homepage.current_status.video ? (
-          <NavLink to={"/videos"}>
-            <p className="px-2">Videos</p>
-          </NavLink>
-        ) : (
-          <></>
-        )}
-        <NavLink to={"/Contacts"}>Contacts</NavLink>
-      </div>
-      <nav className="flex  md:hidden ">
-        <NavBarHamburger />
-      </nav>
-    </div>
-  );
-};
-
-export default NavBar;
 
 interface INavItems {
   title: string;
@@ -57,17 +17,12 @@ export const NavItems = ({ title, href }: INavItems) => (
   <NavLink
     to={href}
     className={({ isActive }) =>
-      isActive
-        ? "text-gray-900 no-underline"
-        : "text-gray-100 no-underline hover:text-gray-900"
+      `${isActive ? "text-gray-100" : "text-gray-400"}`
     }
   >
-    <Title order={3} className="text-base">
-      {title}
-    </Title>
+    {title}
   </NavLink>
 );
-
 export const NavBarHamburger = () => {
   const HbCtx = React.useContext(HomeContext);
   React.useEffect(() => {
@@ -84,26 +39,17 @@ export const NavBarHamburger = () => {
         withCloseButton={true}
         title={<Title order={3}>Menu</Title>}
       >
-        <NavLink to={"/"} className={"md:pr-6"}>
-          <p>Home</p>
-        </NavLink>
-        {!false ? (
-          <NavLink to={"/blogs"}>
-            <p>Blogs</p>
-          </NavLink>
-        ) : (
-          <></>
-        )}
-        {!false ? (
-          <NavLink to={"/Videos"}>
-            <p>Videos</p>
-          </NavLink>
-        ) : (
-          <></>
-        )}
-        <NavLink to={"/Contacts"}>
-          <p>Contact</p>
-        </NavLink>
+        <div className="grid gap-6 text-2xl my-6">
+          <NavLink to={"/"}>Home</NavLink>
+          {!false ? <NavLink to={"/blogs"}>Blogs</NavLink> : <></>}
+          {!false ? <NavLink to={"/Videos"}>Videos</NavLink> : <></>}
+          <a href="#contact-section" className="text-gray-400">
+            Contact
+          </a>
+          <Link to={"/login"}>
+            <div className="text-white  ">Login </div>
+          </Link>
+        </div>
       </Drawer>
       <Button onClick={open}>
         <Icon icon="pajamas:hamburger" className="flex  md:hidden " />
@@ -111,3 +57,41 @@ export const NavBarHamburger = () => {
     </>
   );
 };
+
+const NavBar = () => {
+  const homepageData = React.useContext(HomeContext);
+  console.log(homepageData.data, "navbar");
+  React.useEffect(() => {
+    console.log(homepageData.isLoading);
+  }, [homepageData]);
+
+  return (
+    <div className="flex-1 px-4 py-1 text-orange-800 flex justify-between font-bold md:px-[20vh]   items-center bg-black sticky top-0 z-50">
+      <Link to="/">
+        <img src={logo} alt="" className="h-10" />
+      </Link>
+      <div className="md:flex hidden gap-4 font-semibold   md:justify-between">
+        <NavItems href="/" title="Home" />
+        {homepageData.data?.homepage.current_status.blog ? (
+          <NavItems href="/blogs" title="Blogs" />
+        ) : (
+          <></>
+        )}
+        {homepageData.data?.homepage.current_status.video ? (
+          <NavItems href="/videos" title="Videos" />
+        ) : (
+          <></>
+        )}
+
+        <NavItems href="/login" title="Login" />
+      </div>
+      <div></div>
+
+      <nav className="flex  md:hidden ">
+        <NavBarHamburger />
+      </nav>
+    </div>
+  );
+};
+
+export default NavBar;

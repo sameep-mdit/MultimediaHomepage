@@ -8,17 +8,23 @@ import { Icon } from "@iconify/react";
 const FOOTER_LINK_LIST = [
   { name: "Homepage", link: "/" },
   { name: "Campaign", link: "/contact" },
-  { name: "Videos", link: "/" },
-  { name: "Project", link: "/" },
-  { name: "Blogs", link: "/blogpage" },
+  { name: "Videos", link: "/videos" },
+  { name: "Blogs", link: "/blogs" },
 ];
 
 const FooterPage = () => {
+  const refresh = () => {
+    window.location.reload();
+  };
   return (
     <div className="grid bg-black">
       <div className="grid gap-8 sm:grid-cols-2 content-start  text-gray-50 p-6  text-sm">
         <div className="grid">
-          <Text className="font-bold text-orange-500	text-3xl">LOGO</Text>
+          <div onClick={refresh}>
+            <Text className="font-bold text-orange-500	text-3xl cursor-pointer">
+              LOGO
+            </Text>
+          </div>
           <Text className="max-w-lg  text-gray-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam qui
             nostrum nemo possimus tenetur quis at praesentium corporis odit
