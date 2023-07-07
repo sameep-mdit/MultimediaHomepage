@@ -1,5 +1,3 @@
-
-
 import { Text, Title, Anchor } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
@@ -12,19 +10,16 @@ const FOOTER_LINK_LIST = [
 ];
 
 const FooterPage = () => {
-  const refresh = () => {
-    window.location.reload();
-  };
   return (
     <div className="grid bg-black">
       <div className="grid gap-8 sm:grid-cols-2 content-start  text-gray-50 p-6  text-sm">
         <div className="grid">
-          <div onClick={refresh}>
-            <Text className="font-bold text-orange-500	text-3xl cursor-pointer">
-              LOGO
-            </Text>
+          <div>
+            {/* <img src={logo} alt="" className="h-12 p-4" /> */}
+            <Text className="text-4xl px-5">Mr.Wanderer</Text>
           </div>
-          <Text className="max-w-lg  text-gray-300">
+
+          <Text className="max-w-lg  px-5 text-sm font-thin text-gray-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam qui
             nostrum nemo possimus tenetur quis at praesentium corporis odit
             distinctio beatae dicta, ipsa quasi natus enim rem repellendus.

@@ -32,7 +32,6 @@ const useStyles = createStyles(() => ({
 const LandingPage = () => {
   const { classes } = useStyles();
   const submitIcon = () => {
-    console.log("hwllo this is from social links");
     {
       homePageData?.data?.homepage?.social.map((item) => {
         return (

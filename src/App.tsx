@@ -6,7 +6,7 @@ import { GlobalProvider } from "./store/Context/HomeContext";
 function App() {
   return (
     <GlobalProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </GlobalProvider>
   );
 }

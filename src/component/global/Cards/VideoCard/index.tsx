@@ -1,6 +1,8 @@
 import React from "react";
 import ReactPlayer from "react-player";
 import ModelCard from "../../Model";
+import { Text } from "@mantine/core";
+import { CapitalizeFirst } from "../../../../utils/string";
 
 type IVideocard = {
   title: string;
@@ -10,9 +12,9 @@ type IVideocard = {
   index?: number;
 };
 
-const VideoCard: React.FC<IVideocard> = ({ title, link, index }) => {
+const VideoCard: React.FC<IVideocard> = ({ title, link  }) => {
   const [modelStatus, setModelStatus] = React.useState<boolean>(false);
-
+  const [isHover, setIsHover] = React.useState(false);
   const modelClickHandler = () => {
     setModelStatus(!modelStatus);
   };
@@ -20,17 +22,13 @@ const VideoCard: React.FC<IVideocard> = ({ title, link, index }) => {
   return (
     <>
       <article
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
         onClick={modelClickHandler}
-        className="grid rounded overflow-hidden border border-solid border-gray-100 cursor-pointer"
+        className="cursor-pointer border-solid border-3 border-gray-100 hover:border-yellow-300"
       >
-        <div
-          className={
-            index! % 2 == 0
-              ? "mr-5  w-[450px] h-[400px] text-black rounded-md"
-              : "mr-5  w-[450px] h-[400px] text-black rounded-md"
-          }
-        >
-          <div className="h-[450px]  bg-gray-500 rounded-xl pointer-events-none">
+        <div className="text-black grid">
+          <div className="w-full h-60">
             <ReactPlayer
               controls={true}
               width="100%"
@@ -38,10 +36,12 @@ const VideoCard: React.FC<IVideocard> = ({ title, link, index }) => {
               url={link}
             />
           </div>
-          <div>
-            {/* <h2 className="font-semibold text-xl">{title}</h2>
-            <hr />
-            <p>{createdDate.split("T")[0]}</p> */}
+          <div
+            className={`p-1 px-2 duration-200 ${
+              isHover ? "bg-yellow-300 text-white" : "bg-gray-100 text-gray-600"
+            }`}
+          >
+            <Text>{CapitalizeFirst(title)}</Text>
           </div>
         </div>
       </article>

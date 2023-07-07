@@ -55,8 +55,11 @@ import React from "react";
 import { user, Category, BlogCoverPhoto } from "../../api/blog";
 import { getBlogById } from "../../api/blog";
 import { useParams } from "react-router-dom";
-import { Avatar } from "@mantine/core";
+import { Avatar, Text } from "@mantine/core";
 import { baseUrl } from "../../constants/Strings";
+import MainWrapper from "../../Layout/MainWrapper";
+import PageWrapper from "../../Layout/PageWrapper";
+import { getDayFrom } from "../../utils/date";
 
 interface BlogsDetailType {
   blogId: string;
@@ -87,49 +90,48 @@ const BlogDetailPage = () => {
   }, []);
 
   return (
-    <div className=" bg-[#FEF6FA]">
-      <img
-        className=" object-cover md:h-[600px] md:w-full"
-        src={
-          baseUrl +
-          "/uploads/" +
-          blogDetailPage?.blogCoverPhoto[0].coverphotoUrl
-        }
-        alt=""
-      />
-      <div className="mx-8 mt-4">
-        <div className="flex justify-between">
-          <div className="flex gap-4">
-            <Avatar className="rounded-full bg-slate-600">
-              {blogDetailPage?.user.name.slice(0).charAt(0).toUpperCase()}{" "}
-            </Avatar>
-            <div>
-              <p> {blogDetailPage?.user.name}</p>
+    <MainWrapper>
+      <PageWrapper>
+        <div>
+          <img
+            className=" object-cover md:h-[400px] md:w-full"
+            src={
+              baseUrl +
+              "/uploads/" +
+              blogDetailPage?.blogCoverPhoto[0].coverphotoUrl
+            }
+            alt=""
+          />
+          <article className="p-4 grid gap-4">
+            <h1 className="font-semibold">{blogDetailPage?.title}</h1>
 
-              <p>
-                Published on :{" "}
-                {blogDetailPage?.blogCoverPhoto[0].createdDate.split("T")[0]}
-              </p>
-            </div>
-          </div>
-          <div>
-            <p>
-              {blogDetailPage?.categories.map((item: Category) => {
-                return <p>#{item.name}</p>;
-              })}
-            </p>
-            <p>
-              Updated on :{" "}
-              {blogDetailPage?.blogCoverPhoto[0].updatedDate.split("T")[0]}
-            </p>
-          </div>
+            <Text>{blogDetailPage?.description}</Text>
+
+            <section className="grid gap-2 mt-4">
+              {/* <Text className="text-md font-regular">Submitted By</Text> */}
+              <div className="flex gap-2">
+                <Avatar radius="sm" size="md" color="blue">
+                  {blogDetailPage?.user.name.slice(0).charAt(0).toUpperCase()}{" "}
+                </Avatar>
+                <div className="text-xs">
+                  <Text className="text-sm font-semibold">
+                    {blogDetailPage?.user.name}
+                  </Text>
+
+                  <Text>
+                    {blogDetailPage?.blogCoverPhoto[0]?.createdDate &&
+                      getDayFrom(
+                        blogDetailPage.blogCoverPhoto[0]
+                          .createdDate as any as Date
+                      )}
+                  </Text>
+                </div>
+              </div>
+            </section>
+          </article>
         </div>
-        <div className="w-3/5 mx-auto bg-white p-4 mt-4">
-          <h1 className="font-semibold">{blogDetailPage?.title}</h1>
-          <p>{blogDetailPage?.description}</p>
-        </div>
-      </div>
-    </div>
+      </PageWrapper>
+    </MainWrapper>
   );
 };
 

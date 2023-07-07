@@ -59,16 +59,16 @@ import { axiosInstance } from "../../config/axiosInstance";
 import MainWrapper from "../../Layout/MainWrapper";
 
 import { useDisclosure } from "@mantine/hooks";
-import { Box, Collapse, Title } from "@mantine/core";
+import { Button, Collapse, Title } from "@mantine/core";
 
-import { Link } from "react-router-dom";
-import { Videos } from "../../api/video";
+import { Video, Videos } from "../../api/video";
 import VideoCard from "../../component/global/Cards/VideoCard";
+import PageWrapper from "../../Layout/PageWrapper";
+import { CapitalizeFirst } from "../../utils/string";
 
-const BlogPage = () => {
+const VideoPage = () => {
   const [videos, setVideos] = React.useState<Videos[]>();
-  const [opened, { toggle }] = useDisclosure(false);
-  console.log(toggle);
+
   const asyncSideEffect = async () => {
     try {
       const res = await axiosInstance.get("/get-all-videos-category");
@@ -89,47 +89,82 @@ const BlogPage = () => {
 
   return (
     <MainWrapper>
-      {videos?.map((item) => {
-        return (
-          <Box mx="auto" className="px-[10vw]">
-            <Title order={3}>{item.name}</Title>
-            <div className="flex justify-end mb-4"></div>
-
-            <div className="grid md:grid-cols-3 gap-4">
-              {item.videos.slice(0, 3).map((video) => {
-                return (
-                  <VideoCard
-                    key={video.video_id}
-                    title={video.title}
-                    link={video.url}
-                    desc={video?.description}
-                    createdDate={video.createdDate}
-                  />
-                );
-              })}
-            </div>
-            <Collapse in={opened}>
-              {item.videos.slice(4, item.videos.length).map((video) => {
-                return (
-                  <Link to={"/blogs/" + video.video_id}>
-                    <div className="flex justify-around mt-4 gap-4">
-                      <VideoCard
-                        title={video.title}
-                        key={video.video_id}
-                        link={video.url}
-                        desc={video?.description}
-                        createdDate={video.createdDate}
-                      />
-                    </div>
-                  </Link>
-                );
-              })}
-            </Collapse>
-          </Box>
-        );
-      })}
+      <PageWrapper>
+        {videos?.map((item, index) => {
+          return (
+            <VideoComponent
+              index={index}
+              item={item?.videos}
+              itemName={item?.name}
+            />
+          );
+        })}
+      </PageWrapper>
     </MainWrapper>
   );
 };
 
-export default BlogPage;
+export default VideoPage;
+
+
+
+
+type VideoLayoutType = {
+  item: Video[];
+  itemName?: string;
+
+  index: number;
+};
+const VideoComponent = ({ index, item, itemName }: VideoLayoutType) => {
+  const [opened, { toggle }] = useDisclosure(false);
+
+  return (
+    <>
+      <section key={index} className="my-4 py-4">
+        <Title order={3} className="font-semibold">
+          {CapitalizeFirst(itemName as string)}
+        </Title>
+        <div className="flex justify-end mb-4"></div>
+
+        <div className="grid md:grid-cols-3 gap-4">
+          {item.slice(0, 3).map((video) => {
+            return (
+              <VideoCard
+                key={video.video_id}
+                title={video.title}
+                link={video.url}
+                desc={video?.description}
+                createdDate={video.createdDate}
+              />
+            );
+          })}
+        </div>
+        <Collapse in={opened}>
+          {item.slice(4, item.length).map((video) => {
+            return (
+              <div className="flex justify-around mt-4 gap-4">
+                <VideoCard
+                  title={video.title}
+                  key={video.video_id}
+                  link={video.url}
+                  desc={video?.description}
+                  createdDate={video.createdDate}
+                />
+              </div>
+            );
+          })}
+        </Collapse>
+      </section>
+      {item?.length >= 4 && (
+        <Button
+          size="xs"
+          color={index % 2 === 0 ? "" : "white"}
+          variant="outline"
+          onClick={toggle}
+        >
+          See More
+        </Button>
+      )}
+    </>
+  );
+};

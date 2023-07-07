@@ -4,6 +4,7 @@ import { IBlogType } from "../../component/global/Blog/blog";
 import BlogCardSmall from "../../component/global/Blog/BlogCardSmall";
 import { Title } from "@mantine/core";
 import { Link } from "react-router-dom";
+import { CapitalizeFirst } from "../../utils/string";
 
 type BlogLayoutType = {
   list?: IBlogType[];
@@ -20,12 +21,12 @@ const thirdBlog = "col-span-3";
 // }, [homePageData]);
 
 const BlogLayout: React.FC<BlogLayoutType> = ({ list, title }) => {
-  console.log("LISOT DATA", list);
+  console.log("LIST DATA", list);
   return (
     <div className="grid gap-4 py-12">
       {title && (
-        <Title order={4} className="text-3xl">
-          {title?.toLocaleUpperCase()}
+        <Title order={4} className="text-2xl font-thin">
+          {CapitalizeFirst(title)}
         </Title>
       )}
       <section className="grid gap-4 grid-cols-5 ">

@@ -6,6 +6,7 @@ import { Carousel } from "@mantine/carousel";
 import { Video, Videos } from "../../api/video";
 import PageWrapper from "../../Layout/PageWrapper";
 import { Text } from "@mantine/core";
+import { CapitalizeFirst } from "../../utils/string";
 
 const VideoSection = () => {
   const homeCtx = React.useContext(HomeContext);
@@ -13,7 +14,7 @@ const VideoSection = () => {
   console.log(dummyHomePageData.homepage.videos);
   return (
     <div>
-      <h1 className=" p-3 text-center text-black pt-12 font-bold hover:cursor-pointer">
+      <h1 className="  text-center bg-gray-800 text-white text-3xl font-semi-bold hover:cursor-pointer">
         Videos
       </h1>
 
@@ -23,12 +24,12 @@ const VideoSection = () => {
             key={item.id}
             className={
               idx % 2 == 0
-                ? "bg-gray-800 py-5 text-white h-[90vh] flex flex-col pt-8 "
-                : "bg-white py-5 text-black h-[90vh] flex flex-col pt-8 "
+                ? "bg-gray-800 py-5 text-white h-[90vh] flex flex-col  "
+                : "bg-white py-5 text-gray-700 h-[90vh] flex flex-col  "
             }
           >
-            <div className="flex justify-between p-4">
-              <h2 className="text-3xl">{item.name}</h2>
+            <div className="flex justify-between p-2">
+              <h2 className="text-2xl font-thin p-2">{CapitalizeFirst(item.name)}</h2>
               <Text></Text>
             </div>
 
