@@ -111,7 +111,7 @@ const BlogDetailPage = () => {
               {/* <Text className="text-md font-regular">Submitted By</Text> */}
               <div className="flex gap-2">
                 <Avatar radius="sm" size="md" color="blue">
-                  {blogDetailPage?.user.name.slice(0).charAt(0).toUpperCase()}{" "}
+                  {blogDetailPage?.user.name.slice(0).charAt(0).toUpperCase()}
                 </Avatar>
                 <div className="text-xs">
                   <Text className="text-sm font-semibold">

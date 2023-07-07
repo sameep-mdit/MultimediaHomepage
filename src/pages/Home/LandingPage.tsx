@@ -55,7 +55,7 @@ const LandingPage = () => {
         {homePageData.data?.homepage?.notice?.map((item) => {
           return (
             <Carousel.Slide>
-              <div className="text-center text-xs font-semibold bg-yellow-200 w-full p-1 cursor-default">
+              <div className="text-center  text-xs font-semibold bg-yellow-200 w-full p-3 cursor-default">
                 {Parser(item?.notice)}
               </div>
             </Carousel.Slide>
