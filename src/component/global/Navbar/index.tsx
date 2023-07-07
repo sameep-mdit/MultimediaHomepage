@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 import { useDisclosure } from "@mantine/hooks";
 
 // ? assets
-import logo from "../../../assets/icons/logo.png";
+export const LOGO_IMG = "src/assets/icons/logo.png";
 
 interface INavItems {
   title: string;
@@ -68,7 +68,7 @@ const NavBar = () => {
   return (
     <div className="flex-1 px-4 py-1 text-orange-800 flex justify-between font-bold md:px-[20vh]   items-center bg-black sticky top-0 z-50">
       <Link to="/">
-        <img src={logo} alt="" className="h-10" />
+        <img src={LOGO_IMG} alt="" className="h-10" />
       </Link>
       <div className="md:flex hidden gap-4 font-semibold   md:justify-between">
         <NavItems href="/" title="Home" />

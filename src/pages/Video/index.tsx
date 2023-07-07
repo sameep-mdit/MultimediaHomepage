@@ -106,9 +106,6 @@ const VideoPage = () => {
 
 export default VideoPage;
 
-
-
-
 type VideoLayoutType = {
   item: Video[];
   itemName?: string;
@@ -140,9 +137,9 @@ const VideoComponent = ({ index, item, itemName }: VideoLayoutType) => {
           })}
         </div>
         <Collapse in={opened}>
-          {item.slice(4, item.length).map((video) => {
-            return (
-              <div className="flex justify-around mt-4 gap-4">
+          <section className="grid md:grid-cols-3 gap-4 mt-8">
+            {item.slice(4, item.length).map((video) => {
+              return (
                 <VideoCard
                   title={video.title}
                   key={video.video_id}
@@ -150,20 +147,17 @@ const VideoComponent = ({ index, item, itemName }: VideoLayoutType) => {
                   desc={video?.description}
                   createdDate={video.createdDate}
                 />
-              </div>
-            );
-          })}
+              );
+            })}
+          </section>
         </Collapse>
       </section>
       {item?.length >= 4 && (
-        <Button
-          size="xs"
-          color={index % 2 === 0 ? "" : "white"}
-          variant="outline"
-          onClick={toggle}
-        >
-          See More
-        </Button>
+        <div className="flex justify-center">
+          <Button size="xs" color="dark" radius="lg" onClick={toggle}>
+            See More
+          </Button>
+        </div>
       )}
     </>
   );

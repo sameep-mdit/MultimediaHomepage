@@ -1,6 +1,7 @@
 import { Text, Title, Anchor } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { LOGO_IMG } from "../Navbar";
 
 const FOOTER_LINK_LIST = [
   { name: "Homepage", link: "/" },
@@ -11,15 +12,15 @@ const FOOTER_LINK_LIST = [
 
 const FooterPage = () => {
   return (
-    <div className="grid bg-black">
+    <div className="grid bg-black px-16">
       <div className="grid gap-8 sm:grid-cols-2 content-start  text-gray-50 p-6  text-sm">
-        <div className="grid">
-          <div>
-            {/* <img src={logo} alt="" className="h-12 p-4" /> */}
-            <Text className="text-4xl px-5">Mr.Wanderer</Text>
+        <div className="grid gap-2">
+          <div className="flex gap-4 items-center h-full">
+            <img src={LOGO_IMG} alt="" className="h-10 w-auto" />
+            <Text className="text-4xl font-bold">Mr.Wanderer</Text>
           </div>
 
-          <Text className="max-w-lg  px-5 text-sm font-thin text-gray-300">
+          <Text className="max-w-lg  text-sm font-thin text-gray-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam qui
             nostrum nemo possimus tenetur quis at praesentium corporis odit
             distinctio beatae dicta, ipsa quasi natus enim rem repellendus.

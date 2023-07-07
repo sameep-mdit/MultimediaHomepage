@@ -4,23 +4,22 @@ import { dummyHomePageData } from "../../constants/dummy/dummyData";
 import VideoCard from "../../component/global/Cards/VideoCard";
 import { Carousel } from "@mantine/carousel";
 import { Video, Videos } from "../../api/video";
-import PageWrapper from "../../Layout/PageWrapper";
-import { Text } from "@mantine/core";
 import { CapitalizeFirst } from "../../utils/string";
+import SectionWrapper from "../../Layout/SectionWrapper";
 
 const VideoSection = () => {
   const homeCtx = React.useContext(HomeContext);
   React.useEffect(() => {}, [homeCtx]);
   console.log(dummyHomePageData.homepage.videos);
   return (
-    <div>
-      <h1 className="  text-center bg-gray-800 text-white text-3xl font-semi-bold hover:cursor-pointer">
+    <div className="p-8 bg-gray-900 grid gap-8">
+      <h1 className="pt-4 text-center  text-white text-3xl font-semi-bold hover:cursor-pointer">
         Videos
       </h1>
 
       {homeCtx.data?.homepage.videos.map((item: Videos, idx) => {
         return (
-          <PageWrapper
+          <SectionWrapper
             key={item.id}
             className={
               idx % 2 == 0
@@ -28,10 +27,9 @@ const VideoSection = () => {
                 : "bg-white py-5 text-gray-700 h-[90vh] flex flex-col  "
             }
           >
-            <div className="flex justify-between p-2">
-              <h2 className="text-2xl font-thin p-2">{CapitalizeFirst(item.name)}</h2>
-              <Text></Text>
-            </div>
+            <h2 className="text-2xl font-semibold my-4">
+              {CapitalizeFirst(item.name)}
+            </h2>
 
             <Carousel
               align="start"
@@ -54,7 +52,7 @@ const VideoSection = () => {
                 );
               })}
             </Carousel>
-          </PageWrapper>
+          </SectionWrapper>
         );
       })}
     </div>

@@ -13,9 +13,9 @@ const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
   return (
     <article
       key={blogId}
-      className="text-black  mb-5 bg-white sm:max-w-none border border-solid border-gray-100 rounded-lg hover:border-blue-200"
+      className="text-black h-full mb-5 bg-white sm:max-w-none border border-solid border-gray-100 rounded-lg hover:border-blue-200"
     >
-      <div className="w-full h-full rounded-t-lg overflow-hidden ">
+      <div className="w-full h-[100% - 20px] rounded-t-lg overflow-hidden ">
         <img
           className="w-full h-full object-cover"
           // src={imageUrl ? `${baseUrl}/uploads/${imageUrl}` : imageURL}

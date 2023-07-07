@@ -12,7 +12,7 @@ type IVideocard = {
   index?: number;
 };
 
-const VideoCard: React.FC<IVideocard> = ({ title, link  }) => {
+const VideoCard: React.FC<IVideocard> = ({ title, link }) => {
   const [modelStatus, setModelStatus] = React.useState<boolean>(false);
   const [isHover, setIsHover] = React.useState(false);
   const modelClickHandler = () => {
@@ -28,7 +28,7 @@ const VideoCard: React.FC<IVideocard> = ({ title, link  }) => {
         className="cursor-pointer border-solid border-3 border-gray-100 hover:border-yellow-300"
       >
         <div className="text-black grid">
-          <div className="w-full h-60">
+          <div className="w-full h-60 pointer-events-none">
             <ReactPlayer
               controls={true}
               width="100%"
@@ -50,7 +50,7 @@ const VideoCard: React.FC<IVideocard> = ({ title, link  }) => {
         closeHandler={modelClickHandler}
         title={title}
       >
-        <div className="z-50">
+        <div className="z-50 ">
           <ReactPlayer width="90vw" height="90vh" controls url={link} />
         </div>
       </ModelCard>
