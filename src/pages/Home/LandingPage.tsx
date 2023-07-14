@@ -1,6 +1,5 @@
 import React from "react";
-import { Carousel } from "@mantine/carousel";
-import { Button, createStyles, getStylesRef } from "@mantine/core";
+import { Button, Text, Title } from "@mantine/core";
 import { Icon } from "@iconify/react";
 import { HomeContext } from "../../store/Context/HomeContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,28 +8,11 @@ import {
   faInstagramSquare,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
-import Parser from "html-react-parser";
 
 import { baseUrl } from "../../constants/Strings";
 import PageWrapper from "../../Layout/PageWrapper";
 
-const useStyles = createStyles(() => ({
-  controls: {
-    ref: getStylesRef("controls"),
-    transition: "opacity 150ms ease",
-    opacity: 0,
-  },
-
-  root: {
-    "&:hover": {
-      [`& .${getStylesRef("controls")}`]: {
-        opacity: 1,
-      },
-    },
-  },
-}));
 const LandingPage = () => {
-  const { classes } = useStyles();
   const submitIcon = () => {
     {
       homePageData?.data?.homepage?.social.map((item) => {
@@ -51,22 +33,10 @@ const LandingPage = () => {
   }, [homePageData]);
   return (
     <>
-      <Carousel classNames={classes} dragFree slideGap="none" align="center">
-        {homePageData.data?.homepage?.notice?.map((item) => {
-          return (
-            <Carousel.Slide>
-              <div className="text-center  text-xs font-semibold bg-yellow-200 w-full p-3 cursor-default">
-                {Parser(item?.notice)}
-              </div>
-            </Carousel.Slide>
-          );
-        })}
-      </Carousel>
-
-      <PageWrapper>
-        <div className="h-[90vh]  w-full flex flex-col-reverse bg-white md:flex-row">
-          <div className="flex-1 flex flex-col-reverse md:flex md:flex-row items-center">
-            <div className="flex md:flex-col   md:justify-evenly">
+      <PageWrapper className="leading-gradiant-bg">
+        <div className="h-full sm:h-[90vh] w-full grid sm:grid-cols-5 md:flex-row gap-y-12 sm:gap-y-4 sm:gap-x-12">
+          <div className="order-2 sm:order-1 sm:col-span-3 flex md:flex md:flex-row gap-4 items-center p-6 sm:p-0">
+            <div className="flex  md:flex-col md:justify-evenly">
               <div
                 onClick={() => {
                   submitIcon();
@@ -89,12 +59,15 @@ const LandingPage = () => {
                 />
               </div>
             </div>
-            <div className="text-justify px-5  ">
-              <h1 className="tracking-in-contract-bck text-6xl mb-4">
-                {homePageData.data?.homepage.heading}
-              </h1>
 
-              <p className="">{homePageData.data?.homepage.description}</p>
+            <div className="text-justify">
+              <Title className="tracking-in-contract-bck text-6xl mb-4">
+                {homePageData.data?.homepage.heading}
+              </Title>
+
+              <Text className="text-gray-800">
+                {homePageData.data?.homepage.description}
+              </Text>
               <a href="#contact-section">
                 <Button
                   color="dark"
@@ -108,9 +81,9 @@ const LandingPage = () => {
               </a>
             </div>
           </div>
-          <div className="flex-1 flex justify-center items-center ` md:w-auto">
+          <div className="order-1 sm:order-2 sm:col-span-2 w-full h-[500px] sm:h-full flex items-center">
             <img
-              className="w-full md:w-2/3 h-[80vh] md:h-[60vh] object-cover"
+              className="w-full h-auto object-cover"
               src={`${baseUrl}/uploads/${homePageData.data?.homepage.photo}`}
               alt="hero-image"
             />

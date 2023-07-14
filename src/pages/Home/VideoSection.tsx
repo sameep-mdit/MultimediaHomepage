@@ -6,14 +6,20 @@ import { Carousel } from "@mantine/carousel";
 import { Video, Videos } from "../../api/video";
 import { CapitalizeFirst } from "../../utils/string";
 import SectionWrapper from "../../Layout/SectionWrapper";
+import SeeMoreCard from "../../component/global/Cards/SeeMore";
+import { useViewportSize } from "@mantine/hooks";
 
 const VideoSection = () => {
+  const { width } = useViewportSize();
   const homeCtx = React.useContext(HomeContext);
   React.useEffect(() => {}, [homeCtx]);
   console.log(dummyHomePageData.homepage.videos);
   return (
-    <div className="p-8 bg-gray-900 grid gap-8">
-      <h1 className="pt-4 text-center  text-white text-3xl font-semi-bold hover:cursor-pointer">
+    <div
+      className="p-8 .leading-gradient-videoSection 
+      grid gap-8"
+    >
+      <h1 className="pt-4 text-center  text-black text-3xl font-semi-bold hover:cursor-pointer">
         Videos
       </h1>
 
@@ -23,22 +29,28 @@ const VideoSection = () => {
             key={item.id}
             className={
               idx % 2 == 0
-                ? "bg-gray-800 py-5 text-white h-[90vh] flex flex-col  "
-                : "bg-white py-5 text-gray-700 h-[90vh] flex flex-col  "
+                ? " py-5 text-white h-[90vh] flex flex-col   "
+                : "py-5 text-gray-700 h-[90vh] flex flex-col"
             }
           >
-            <h2 className="text-2xl font-semibold my-4">
+            <h2 className="text-2xl font-semibold mb-4">
               {CapitalizeFirst(item.name)}
             </h2>
 
             <Carousel
               align="start"
               slideGap="sm"
-              loop
-              slideSize="33.333333%"
-              withIndicators
+              slideSize={getCarouselPercentage(width)}
+              styles={{
+                control: {
+                  "&[data-inactive]": {
+                    opacity: 0,
+                    cursor: "default",
+                  },
+                },
+              }}
             >
-              {item.videos.map((video: Video) => {
+              {item.videos.slice(0, 4).map((video: Video) => {
                 return (
                   <Carousel.Slide key={video.video_id}>
                     <VideoCard
@@ -51,6 +63,15 @@ const VideoSection = () => {
                   </Carousel.Slide>
                 );
               })}
+              {item.videos.length > 4 && (
+                <Carousel.Slide>
+                  {idx % 2 == 0 ? (
+                    <SeeMoreCard dark link="/videos" label="See More" />
+                  ) : (
+                    <SeeMoreCard link="/videos" label="See More" />
+                  )}
+                </Carousel.Slide>
+              )}
             </Carousel>
           </SectionWrapper>
         );
@@ -60,3 +81,15 @@ const VideoSection = () => {
 };
 
 export default VideoSection;
+
+export const getCarouselPercentage = (width: number) => {
+  if (width > 1024) {
+    return "33.333%";
+  } else if (width > 768) {
+    return "50%";
+  } else if (width > 640) {
+    return "100%";
+  } else {
+    return "100%";
+  }
+};

@@ -59,12 +59,14 @@ import { axiosInstance } from "../../config/axiosInstance";
 import MainWrapper from "../../Layout/MainWrapper";
 
 import { useDisclosure } from "@mantine/hooks";
-import { Button, Collapse, Title } from "@mantine/core";
+import { Collapse, Title } from "@mantine/core";
 
 import { Video, Videos } from "../../api/video";
 import VideoCard from "../../component/global/Cards/VideoCard";
 import PageWrapper from "../../Layout/PageWrapper";
 import { CapitalizeFirst } from "../../utils/string";
+import { Carousel } from "@mantine/carousel";
+import PagesSeeMoreCard from "../../component/global/Cards/PagesSeeMore";
 
 const VideoPage = () => {
   const [videos, setVideos] = React.useState<Videos[]>();
@@ -89,17 +91,23 @@ const VideoPage = () => {
 
   return (
     <MainWrapper>
-      <PageWrapper>
         {videos?.map((item, index) => {
           return (
+            <PageWrapper
+            className={`pt-8 ${
+              index % 2 === 0
+                ? "bg-gray-700 text-white"
+                : "bg-gray-500 text-white"
+            }`}
+            >
             <VideoComponent
               index={index}
               item={item?.videos}
               itemName={item?.name}
             />
+            </PageWrapper>
           );
         })}
-      </PageWrapper>
     </MainWrapper>
   );
 };
@@ -114,6 +122,7 @@ type VideoLayoutType = {
 };
 const VideoComponent = ({ index, item, itemName }: VideoLayoutType) => {
   const [opened, { toggle }] = useDisclosure(false);
+  console.log({ opened });
 
   return (
     <>
@@ -121,44 +130,67 @@ const VideoComponent = ({ index, item, itemName }: VideoLayoutType) => {
         <Title order={3} className="font-semibold">
           {CapitalizeFirst(itemName as string)}
         </Title>
-        <div className="flex justify-end mb-4"></div>
+        {/* <div className="flex justify-end mb-4"></div> */}
 
-        <div className="grid md:grid-cols-3 gap-4">
-          {item.slice(0, 3).map((video) => {
-            return (
-              <VideoCard
-                key={video.video_id}
-                title={video.title}
-                link={video.url}
-                desc={video?.description}
-                createdDate={video.createdDate}
-              />
-            );
-          })}
-        </div>
+        {!opened && (
+          <div className="grid gap-4">
+            <Carousel
+              align="start"
+              slideSize="33.333333%"
+              slideGap="sm"
+              styles={{
+                control: {
+                  "&[data-inactive]": {
+                    opacity: 0,
+                    cursor: "default",
+                  },
+                },
+              }}
+            >
+              {item.slice(0, 4).map((video) => {
+                return (
+                  <Carousel.Slide key={video.video_id}>
+                    <VideoCard
+                      title={video.title}
+                      link={video.url}
+                      desc={video?.description}
+                      createdDate={video.createdDate}
+                    />
+                  </Carousel.Slide>
+                );
+              })}
+              {item.length > 4 && !opened && (
+                <Carousel.Slide>
+                  <PagesSeeMoreCard onClick={toggle} />
+                </Carousel.Slide>
+              )}
+            </Carousel>
+          </div>
+        )}
         <Collapse in={opened}>
-          <section className="grid md:grid-cols-3 gap-4 mt-8">
-            {item.slice(4, item.length).map((video) => {
+          <div className="grid gap-4 w-full h-full  sm:grid-cols-2 md:grid-cols-3">
+            {item.map((video) => {
               return (
                 <VideoCard
-                  title={video.title}
                   key={video.video_id}
+                  title={video.title}
                   link={video.url}
                   desc={video?.description}
                   createdDate={video.createdDate}
                 />
               );
             })}
-          </section>
+            {<PagesSeeMoreCard onClick={toggle} label="See Less" />}
+          </div>
         </Collapse>
       </section>
-      {item?.length >= 4 && (
+      {/* {item?.length >= 4 && (
         <div className="flex justify-center">
           <Button size="xs" color="dark" radius="lg" onClick={toggle}>
             See More
           </Button>
         </div>
-      )}
+      )} */}
     </>
   );
 };

@@ -3,14 +3,10 @@ interface IPageWrapper {
   className?: string;
 }
 
-const style = "w-full  h-full rounded-lg ";
+const style = "p-4 mx-auto max-w-6xl w-full h-full rounded-lg ";
 const SectionWrapper: React.FC<IPageWrapper> = ({ children, className }) => {
   const newClassName = className ? `${style} ${className}` : style;
-  return (
-    <article className={newClassName}>
-      <div className="max-w-5xl  mx-auto pb-6 w-full">{children}</div>
-    </article>
-  );
+  return <article className={newClassName}>{children}</article>;
 };
 
 export default SectionWrapper;

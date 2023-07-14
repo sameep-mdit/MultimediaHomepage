@@ -1,6 +1,6 @@
 import React from "react";
 import BlogLayout from "../../Layout/BlogLayout";
-import PageWrapper from "../../Layout/PageWrapper";
+
 import { HomeContext } from "../../store/Context/HomeContext";
 
 const BlogSection = () => {

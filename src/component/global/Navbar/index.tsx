@@ -17,7 +17,7 @@ export const NavItems = ({ title, href }: INavItems) => (
   <NavLink
     to={href}
     className={({ isActive }) =>
-      `${isActive ? "text-gray-100" : "text-gray-400"}`
+      `    ${isActive ? "text-gray-100" : "text-gray-400"}`
     }
   >
     {title}
@@ -66,9 +66,9 @@ const NavBar = () => {
   }, [homepageData]);
 
   return (
-    <div className="flex-1 px-4 py-1 text-orange-800 flex justify-between font-bold md:px-[20vh]   items-center bg-black sticky top-0 z-50">
+    <div className="flex-1 px-4 py-1 text-orange-800 flex  justify-between font-bold md:px-20  bg-black items-center sticky top-0 z-50">
       <Link to="/">
-        <img src={LOGO_IMG} alt="" className="h-10" />
+        <img src={LOGO_IMG} alt="" className="h-8" />
       </Link>
       <div className="md:flex hidden gap-4 font-semibold   md:justify-between">
         <NavItems href="/" title="Home" />

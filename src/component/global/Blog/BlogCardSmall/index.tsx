@@ -15,7 +15,7 @@ const BlogCardSmall: React.FC<Partial<IBlogType>> = ({
   console.log(blogCoverPhoto, createdDate);
 
   return (
-    <article className="border w-full  h-full grid grid-cols-3 min-h-32 border-solid mx-2 bg-white text-black border-gray-200 rounded-lg hover:border-blue-200">
+    <article className="border w-full  h-full grid grid-cols-3 min-h-32 border-solid bg-white text-black border-gray-200 rounded-lg hover:border-blue-200">
       <div className="w-full  h-full  overflow-hidden rounded-l-lg">
         <img
           className="w-full h-full object-cover image-hover"

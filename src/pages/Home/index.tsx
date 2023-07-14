@@ -11,6 +11,7 @@ import VideoSection from "./VideoSection";
 
 import FooterPage from "../../component/global/Footer";
 import BlogSection from "./BlogSection";
+import NoticeSection from "./NoticeSection";
 
 const Home = () => {
   const homePageData = React.useContext(HomeContext);
@@ -18,16 +19,16 @@ const Home = () => {
   console.log({ data });
 
   return (
-    <>
+    <div className="grid">
       <NavBar />
-
+      <NoticeSection />
       <LandingPage />
       <VideoSection />
       <BlogSection />
       <ChannelSection />
       <ContactPage />
       <FooterPage />
-    </>
+    </div>
   );
 };
 

@@ -15,18 +15,18 @@ const FOOTER_LINK_LIST = [
 
 const FooterPage = () => {
   return (
-    <div className="grid bg-black px-16">
+    <div className="grid bg-black px-6 md:px-16">
       <div className="grid gap-8 sm:grid-cols-2 content-start  text-gray-50 p-6  text-sm">
         {/* </div> <div className="flex-1 px-4 py-1 text-orange-800 flex justify-between font-bold md:px-[20vh]   items-center bg-black sticky top-0 z-50"> */}
         <div className="grid gap-2 px-4 flex-1 top-0 py-2 ">
           <div className="flex gap-4 items-center h-full ">
             <img src={LOGO_IMG} alt="" className="h-10 w-auto" />
-            <Text className="text-4xl font-bold  hover:text-yellow-300">
+            <Text className="text-4xl font-bold text-yellow-400">
               Mr.Wanderer
             </Text>
           </div>
 
-          <Text className="max-w-lg px-16 text-sm font-thin  text-gray-300 ">
+          <Text className="max-w-lg text-sm font-thin  text-gray-300 ">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam qui
             nostrum nemo possimus tenetur quis at praesentium corporis odit
             distinctio beatae dicta, ipsa quasi natus enim rem repellendus.

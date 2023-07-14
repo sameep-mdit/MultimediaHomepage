@@ -3,6 +3,7 @@ import { Title, Text } from "@mantine/core";
 
 import { getDayFrom } from "../../../../utils/date";
 import { IBlogType } from "../blog";
+import { CapitalizeFirst } from "../../../../utils/string";
 
 const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
   blogId,
@@ -13,7 +14,7 @@ const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
   return (
     <article
       key={blogId}
-      className="text-black h-full mb-5 bg-white sm:max-w-none border border-solid border-gray-100 rounded-lg hover:border-blue-200"
+      className="text-gray-700 h-full bg-white sm:max-w-none border-2 border-solid border-gray-100 rounded-lg hover:border-gray-300 hover:text-gray-600 "
     >
       <div className="w-full h-[100% - 20px] rounded-t-lg overflow-hidden ">
         <img
@@ -28,10 +29,10 @@ const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
         <Text className="text-xs text-zinc-600">
           {getDayFrom(new Date(createdDate!))}
         </Text>
-        <Title lineClamp={1} className="text-lg leading-none">
-          {title ?? ""}
+        <Title lineClamp={1} className="text-lg font-semibold leading-1">
+          {CapitalizeFirst(title ?? "")}
         </Title>
-        <Text lineClamp={2} className="mt-2">
+        <Text lineClamp={2} className="text-zinc-600">
           {description}
         </Text>
       </div>

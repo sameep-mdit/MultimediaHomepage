@@ -8,11 +8,14 @@ import MainWrapper from "../../Layout/MainWrapper";
 import BlogCardLarge from "../../component/global/Blog/BlogCardLarge";
 
 import { useDisclosure } from "@mantine/hooks";
-import { Button, Collapse, Title } from "@mantine/core";
+import { Collapse, Title } from "@mantine/core";
 
 import { Link } from "react-router-dom";
 import { CapitalizeFirst } from "../../utils/string";
 import PageWrapper from "../../Layout/PageWrapper";
+
+import { Carousel } from "@mantine/carousel";
+import PagesSeeMoreCard from "../../component/global/Cards/PagesSeeMore";
 
 const BlogPage = () => {
   const [blogs, setBlogs] = React.useState<blogType[]>();
@@ -20,7 +23,7 @@ const BlogPage = () => {
   const asyncSideEffect = async () => {
     try {
       const res = await axiosInstance.get("/get-all-blogs-category");
-      setBlogs(res.data.data);
+      setBlogs([...res.data.data, ...res.data.data]);
       console.log(res.data.data);
     } catch (error) {
       console.log(error);
@@ -41,7 +44,9 @@ const BlogPage = () => {
         return (
           <PageWrapper
             className={`pt-8 ${
-              index % 2 === 0 ? "" : "bg-gray-800 text-white"
+              index % 2 === 0
+                ? "bg-gray-700 text-white"
+                : "bg-gray-500 text-white"
             }`}
           >
             <BlogComponent
@@ -70,34 +75,49 @@ const BlogComponent = ({ item, index, itemName }: BlogLayoutType) => {
     <>
       <div className="flex justify-between mb-4">
         <Title order={3}>{CapitalizeFirst(itemName as string)}</Title>
-        {item.length >= 4 && (
-          <Button
-            size="xs"
-            color={index % 2 === 0 ? "" : "white"}
-            variant="outline"
-            onClick={toggle}
+      </div>
+      {!opened && (
+        <div className="grid  gap-4">
+          <Carousel
+            align="start"
+            slideSize="33.333333%"
+            slideGap="sm"
+            styles={{
+              control: {
+                "&[data-inactive]": {
+                  opacity: 0,
+                  cursor: "default",
+                },
+              },
+            }}
           >
-            See More
-          </Button>
-        )}
-      </div>
+            {item.slice(0, 4).map((blog, index) => {
+              return (
+                <Carousel.Slide key={index}>
+                  <Link to={"/blogs/" + blog.blogId}>
+                    <BlogCardLarge
+                      title={blog.title}
+                      description={blog.description}
+                      createdDate={blog.createdDate}
+                    />
+                  </Link>
+                </Carousel.Slide>
+              );
+            })}
+            {item.length > 4 && !opened && (
+              <Carousel.Slide>
+                <PagesSeeMoreCard onClick={toggle} />
+              </Carousel.Slide>
+            )}
+          </Carousel>
+        </div>
+      )}
 
-      <div className="grid md:grid-cols-3 gap-4">
-        {item.slice(0, 3).map((blog) => {
-          return (
-            <Link to={"/blogs/" + blog.blogId}>
-              <BlogCardLarge
-                title={blog.title}
-                description={blog.description}
-                createdDate={blog.createdDate}
-              />
-            </Link>
-          );
-        })}
-      </div>
+      {/* from this we seperate */}
+
       <Collapse in={opened}>
-        <div className="grid md:grid-cols-3 gap-4">
-          {item.slice(4, item.length).map((blog) => {
+        <div className="grid  sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+          {item.map((blog) => {
             return (
               <Link to={"/blogs/" + blog.blogId}>
                 <BlogCardLarge
@@ -108,6 +128,8 @@ const BlogComponent = ({ item, index, itemName }: BlogLayoutType) => {
               </Link>
             );
           })}
+
+          {<PagesSeeMoreCard onClick={toggle} label="See Less" />}
         </div>
       </Collapse>
     </>

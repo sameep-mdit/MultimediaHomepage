@@ -12,7 +12,6 @@
 }
 *::-webkit-scrollbar {
   display: none;
-
 }
 li {
   list-style: none;
@@ -93,4 +92,59 @@ a {
 
 html {
   scroll-behavior: smooth;
+}
+
+.mantine-Carousel-controls {
+  width: calc(100% + 120px);
+  left: -60px;
+}
+
+.mantine-Carousel-control {
+  background: rgb(255, 255, 255, 0.5);
+  border: none;
+  box-shadow: none;
+}
+
+.notice {
+  .mantine-Carousel-control {
+    background: none;
+    border: none;
+    box-shadow: none;
+    &:hover {
+      background: white;
+      border-radius: 0rem;
+    }
+  }
+}
+
+.notice-animation {
+  animation: opacityAnimate 0.4s;
+}
+.leading-gradiant-bg {
+  background: rgb(246, 198, 140);
+  background: linear-gradient(
+    90deg,
+    rgba(246, 198, 140, 1) 0%,
+    rgba(155, 182, 235, 1) 100%
+  );
+}
+
+// .leading-gradient-videoSection {
+//   background-image: linear-gradient(
+//     to right,
+//     rgba(155, 182, 235, 1) 50% rgba(246, 198, 140, 1) 50%
+//   );
+// }
+
+@keyframes opacityAnimate {
+  from {
+    opacity: 60%;
+    position: relative;
+    top: -1rem;
+  }
+  to {
+    position: static;
+    opacity: 100%;
+    top: 0rem;
+  }
 }

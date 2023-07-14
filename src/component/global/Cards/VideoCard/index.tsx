@@ -25,9 +25,9 @@ const VideoCard: React.FC<IVideocard> = ({ title, link }) => {
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         onClick={modelClickHandler}
-        className="cursor-pointer border-solid border-3 border-gray-100 hover:border-yellow-300"
+        className="cursor-pointer"
       >
-        <div className="text-black grid">
+        <div className="text-white grid">
           <div className="w-full h-60 pointer-events-none">
             <ReactPlayer
               controls={true}
@@ -37,8 +37,8 @@ const VideoCard: React.FC<IVideocard> = ({ title, link }) => {
             />
           </div>
           <div
-            className={`p-1 px-2 duration-200 ${
-              isHover ? "bg-yellow-300 text-white" : "bg-gray-100 text-gray-600"
+            className={`p-1 px-2 font-semibold duration-100 ${
+              isHover ? "text-zinc-900" : "text-white"
             }`}
           >
             <Text>{CapitalizeFirst(title)}</Text>

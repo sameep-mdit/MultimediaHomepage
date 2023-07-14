@@ -14,9 +14,9 @@ type BlogLayoutType = {
   theme?: "dark" | "white";
 };
 
-const firstBlog = "row-span-2 col-span-2";
-const secondBlog = "col-span-3";
-const thirdBlog = "col-span-3";
+const firstBlog = "row-span-2 col-span-2 w-full";
+const secondBlog = "col-span-3 w-full";
+const thirdBlog = "col-span-3 w-full";
 
 const colors = {
   dark: "bg-gray-800 text-gray-100",
