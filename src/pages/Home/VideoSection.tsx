@@ -5,9 +5,12 @@ import VideoCard from "../../component/global/Cards/VideoCard";
 import { Carousel } from "@mantine/carousel";
 import { Video, Videos } from "../../api/video";
 import { CapitalizeFirst } from "../../utils/string";
-import SectionWrapper from "../../Layout/SectionWrapper";
+// import SectionWrapper from "../../Layout/SectionWrapper";
 import SeeMoreCard from "../../component/global/Cards/SeeMore";
 import { useViewportSize } from "@mantine/hooks";
+import { bgColorGenerator } from "../../utils/color";
+import PageWrapper from "../../Layout/PageWrapper";
+import { Title } from "@mantine/core";
 
 const VideoSection = () => {
   const { width } = useViewportSize();
@@ -16,31 +19,28 @@ const VideoSection = () => {
   console.log(dummyHomePageData.homepage.videos);
   return (
     <div
-      className="p-8 .leading-gradient-videoSection 
-      grid gap-8"
+      className=".leading-gradient-videoSection 
+      grid gap-2 py-8"
     >
-      <h1 className="pt-4 text-center  text-black text-3xl font-semi-bold hover:cursor-pointer">
-        Videos
-      </h1>
-
       {homeCtx.data?.homepage.videos.map((item: Videos, idx) => {
         return (
-          <SectionWrapper
-            key={item.id}
-            className={
-              idx % 2 == 0
-                ? " py-5 text-white h-[90vh] flex flex-col   "
-                : "py-5 text-gray-700 h-[90vh] flex flex-col"
-            }
-          >
-            <h2 className="text-2xl font-semibold mb-4">
+          <PageWrapper key={item.id} className={bgColorGenerator(item.color)}>
+            {/* className={`pt-8 ${
+              index % 2 === 0
+                ? "bg-gray-700 text-white"
+                : "bg-gray-500 text-white"
+            }`} */}
+
+            <Title order={4} className="text-2xl font-semibold mb-8">
               {CapitalizeFirst(item.name)}
-            </h2>
+            </Title>
 
             <Carousel
               align="start"
-              slideGap="sm"
-              slideSize={getCarouselPercentage(width)}
+              slideGap="xl"
+              slideSize={GetCarouselPercentage(width)}
+              slidesToScroll={3}
+              controlSize={35}
               styles={{
                 control: {
                   "&[data-inactive]": {
@@ -73,7 +73,7 @@ const VideoSection = () => {
                 </Carousel.Slide>
               )}
             </Carousel>
-          </SectionWrapper>
+          </PageWrapper>
         );
       })}
     </div>
@@ -82,14 +82,26 @@ const VideoSection = () => {
 
 export default VideoSection;
 
-export const getCarouselPercentage = (width: number) => {
-  if (width > 1024) {
+export const GetCarouselPercentage = (width: number) => {
+  if (width >= 1024) {
     return "33.333%";
-  } else if (width > 768) {
+  } else if (width >= 768) {
     return "50%";
-  } else if (width > 640) {
+  } else if (width >= 640) {
     return "100%";
   } else {
     return "100%";
+  }
+};
+
+export const GetCarouselMaxScreens = (width: number) => {
+  if (width >= 1024) {
+    return 3;
+  } else if (width >= 768) {
+    return 2;
+  } else if (width >= 640) {
+    return 2;
+  } else {
+    return 1;
   }
 };

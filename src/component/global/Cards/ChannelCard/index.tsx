@@ -1,5 +1,12 @@
 import React from "react";
+
 import { imageURL } from "../../Blog/BlogCardSmall";
+import { CapitalizeFirst } from "../../../../utils/string";
+
+import style from "./style.module.scss";
+import { Title } from "@mantine/core";
+import { Link } from "react-router-dom";
+import { baseUrl } from "../../../../constants/Strings";
 
 interface IChannelcard {
   channelName: string;
@@ -8,26 +15,37 @@ interface IChannelcard {
   socials?: Array<any>;
 }
 
-const ChannelCard: React.FC<IChannelcard> = ({
-  channelName,
-  
-
-  socials,
-}) => {
+const ChannelCard: React.FC<IChannelcard> = ({ channelName, socials }) => {
   return (
-    <div className="flex gap-4 bg-slate-100  p-4 rounded-2xl hover:cursor-pointer ">
-      <div className="border-red-400 first-letter: mr-2">
+    <div className={style.channelCard}>
+      <div className="">
         <img
           src={imageURL}
-          className="aspect-square w-14 rounded-full"
+          className="aspect-square w-28 rounded-full"
           alt=""
         />
       </div>
-      <div className="w-full grid gap-2">
-        <div>
-          <h3 className="font-bold text-2xl">{channelName}</h3>
-          {/* <Text> {desc} </Text> */}
-          <div className=" gap-4"> {socials}</div>
+      <div className="w-full grid gap-4">
+        <Title order={1} className="font-bold text-2xl text-center">
+          {CapitalizeFirst(channelName)}
+        </Title>
+        {/* <Text> {desc} </Text> */}
+        <div className="flex gap-2 justify-center">
+          {socials?.map((item) => {
+            return (
+              <Link to={item.url} className="text-gray-100">
+                <img
+                  title={item.name ?? "link"}
+                  className={style.image}
+                  src={
+                    baseUrl + "/uploads/" + item?.logo
+                    //blogDetailPage?.blogCoverPhoto[0].coverphotoUrl
+                  }
+                  alt=""
+                />
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

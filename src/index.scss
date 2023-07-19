@@ -94,27 +94,31 @@ html {
   scroll-behavior: smooth;
 }
 
-.mantine-Carousel-controls {
-  width: calc(100% + 120px);
-  left: -60px;
+@media (min-width: "1250px") {
+  .mantine-Carousel-controls {
+    width: calc(100% + 120px);
+    left: -60px;
+  }
+  .mantine-Carousel-control {
+    background: rgb(255, 255, 255, 0.5);
+    border: none;
+    box-shadow: none;
+  }
+  .notice {
+    .mantine-Carousel-control {
+      background: none;
+      border: none;
+      box-shadow: none;
+      &:hover {
+        background: white;
+        border-radius: 0rem;
+      }
+    }
+  }
 }
 
 .mantine-Carousel-control {
-  background: rgb(255, 255, 255, 0.5);
-  border: none;
-  box-shadow: none;
-}
-
-.notice {
-  .mantine-Carousel-control {
-    background: none;
-    border: none;
-    box-shadow: none;
-    &:hover {
-      background: white;
-      border-radius: 0rem;
-    }
-  }
+  font-size: 3rem;
 }
 
 .notice-animation {
@@ -146,5 +150,31 @@ html {
     position: static;
     opacity: 100%;
     top: 0rem;
+  }
+}
+
+.icon {
+  @apply text-zinc-800 text-4xl cursor-pointer;
+  transition: 0.5s;
+
+  &:hover,
+  &:active {
+    @apply text-zinc-950 shadow-lg;
+    animation: icon-animate 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@keyframes icon-animate {
+  0% {
+    position: relative;
+    top: 0rem;
+  }
+  70% {
+    top: -0.5rem;
+  }
+  100% {
+    top: 0rem;
+    position: relative;
   }
 }

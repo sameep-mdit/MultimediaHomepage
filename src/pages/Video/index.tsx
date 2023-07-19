@@ -52,13 +52,13 @@
 
 // export default VideoPage;
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { axiosInstance } from "../../config/axiosInstance";
 
 import MainWrapper from "../../Layout/MainWrapper";
 
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useViewportSize } from "@mantine/hooks";
 import { Collapse, Title } from "@mantine/core";
 
 import { Video, Videos } from "../../api/video";
@@ -67,6 +67,10 @@ import PageWrapper from "../../Layout/PageWrapper";
 import { CapitalizeFirst } from "../../utils/string";
 import { Carousel } from "@mantine/carousel";
 import PagesSeeMoreCard from "../../component/global/Cards/PagesSeeMore";
+import {
+  GetCarouselMaxScreens,
+  GetCarouselPercentage,
+} from "../Home/VideoSection";
 
 const VideoPage = () => {
   const [videos, setVideos] = React.useState<Videos[]>();
@@ -91,23 +95,23 @@ const VideoPage = () => {
 
   return (
     <MainWrapper>
-        {videos?.map((item, index) => {
-          return (
-            <PageWrapper
+      {videos?.map((item, index) => {
+        return (
+          <PageWrapper
             className={`pt-8 ${
               index % 2 === 0
                 ? "bg-gray-700 text-white"
                 : "bg-gray-500 text-white"
             }`}
-            >
+          >
             <VideoComponent
               index={index}
               item={item?.videos}
               itemName={item?.name}
             />
-            </PageWrapper>
-          );
-        })}
+          </PageWrapper>
+        );
+      })}
     </MainWrapper>
   );
 };
@@ -124,6 +128,8 @@ const VideoComponent = ({ index, item, itemName }: VideoLayoutType) => {
   const [opened, { toggle }] = useDisclosure(false);
   console.log({ opened });
 
+  const { width } = useViewportSize();
+
   return (
     <>
       <section key={index} className="my-4 py-4">
@@ -136,8 +142,11 @@ const VideoComponent = ({ index, item, itemName }: VideoLayoutType) => {
           <div className="grid gap-4">
             <Carousel
               align="start"
-              slideSize="33.333333%"
-              slideGap="sm"
+              slideSize={GetCarouselPercentage(Number(width))}
+              slideGap="xl"
+              // dragFree
+              // loop
+              slidesToScroll={GetCarouselMaxScreens(Number(width))}
               styles={{
                 control: {
                   "&[data-inactive]": {

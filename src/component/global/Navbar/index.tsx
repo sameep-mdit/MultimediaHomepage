@@ -1,9 +1,12 @@
 import React from "react";
-import { HomeContext } from "../../../store/Context/HomeContext";
-import { Link, NavLink } from "react-router-dom";
-import { Button, Drawer, Title } from "@mantine/core";
 import { Icon } from "@iconify/react";
 import { useDisclosure } from "@mantine/hooks";
+import { Link, NavLink } from "react-router-dom";
+import { Button, Drawer, Title } from "@mantine/core";
+
+import { HomeContext } from "../../../store/Context/HomeContext";
+
+import style from "./style.module.scss";
 
 // ? assets
 export const LOGO_IMG = "src/assets/icons/logo.png";
@@ -17,7 +20,7 @@ export const NavItems = ({ title, href }: INavItems) => (
   <NavLink
     to={href}
     className={({ isActive }) =>
-      `    ${isActive ? "text-gray-100" : "text-gray-400"}`
+      isActive ? style.navItemActive : style.navItem
     }
   >
     {title}
@@ -66,11 +69,11 @@ const NavBar = () => {
   }, [homepageData]);
 
   return (
-    <div className="flex-1 px-4 py-1 text-orange-800 flex  justify-between font-bold md:px-20  bg-black items-center sticky top-0 z-50">
+    <div className="flex-1 px-4 py-2 text-orange-800 flex  justify-between font-bold md:px-20  bg-black items-center sticky top-0 z-50">
       <Link to="/">
-        <img src={LOGO_IMG} alt="" className="h-8" />
+        <img src={LOGO_IMG} alt="" className="h-10" />
       </Link>
-      <div className="md:flex hidden gap-4 font-semibold   md:justify-between">
+      <div className={style.navItemsLg}>
         <NavItems href="/" title="Home" />
         {homepageData.data?.homepage.current_status.blog ? (
           <NavItems href="/blogs" title="Blogs" />

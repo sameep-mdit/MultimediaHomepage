@@ -12,6 +12,8 @@ import VideoSection from "./VideoSection";
 import FooterPage from "../../component/global/Footer";
 import BlogSection from "./BlogSection";
 import NoticeSection from "./NoticeSection";
+import MainWrapper from "../../Layout/MainWrapper";
+import { Divider } from "@mantine/core";
 
 const Home = () => {
   const homePageData = React.useContext(HomeContext);
@@ -20,14 +22,15 @@ const Home = () => {
 
   return (
     <div className="grid">
-      <NavBar />
-      <NoticeSection />
-      <LandingPage />
-      <VideoSection />
-      <BlogSection />
-      <ChannelSection />
-      <ContactPage />
-      <FooterPage />
+      <MainWrapper>
+        <NoticeSection />
+        <LandingPage />
+        <VideoSection />
+        <Divider />
+        <BlogSection />
+        <ChannelSection />
+        <ContactPage />
+      </MainWrapper>
     </div>
   );
 };

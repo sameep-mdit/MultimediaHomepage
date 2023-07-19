@@ -8,7 +8,7 @@ const PageWrapper: React.FC<IPageWrapper> = ({ children, className }) => {
   const newClassName = className ? `${style} ${className}` : style;
   return (
     <article className={newClassName}>
-      <div className="max-w-6xl mx-auto p-4 pb-6 w-full">{children}</div>
+      <div className="max-w-[1200px] mx-auto px-4 py-6 w-full">{children}</div>
     </article>
   );
 };

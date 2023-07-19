@@ -1,0 +1,19 @@
+.blogCard {
+  @apply text-gray-700 bg-white sm:max-w-none duration-150;
+  @apply border-x-0 border-t-0 border-b-4 border-solid border-gray-400;
+  //   @apply shadow-blue-700;
+
+  &:hover {
+    @apply shadow-blue-700 text-blue-800 duration-150;
+    // @apply shadow-blue-700;
+    @apply border-blue-500;
+  }
+}
+
+.blogCardLarge {
+  @apply blogCard h-full;
+}
+
+.blogCardSmall {
+  @apply blogCard w-full h-full grid grid-cols-3;
+}

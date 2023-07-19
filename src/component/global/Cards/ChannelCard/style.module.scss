@@ -1,0 +1,17 @@
+.channelCard {
+  @apply duration-150 grid gap-4 justify-items-center text-gray-200 p-4 bg-gray-900 rounded-lg;
+
+  //   @apply border-gray-50  border-0 border-l-4 border-solid;
+
+  //   &:hover {
+  //     @apply duration-150 border-blue-600 text-blue-950;
+  //   }
+}
+
+.image {
+  @apply rounded-sm w-6 duration-150;
+  &:hover {
+    filter: contrast(80%);
+    @apply duration-150;
+  }
+}

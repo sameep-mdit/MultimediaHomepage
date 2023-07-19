@@ -1,9 +1,11 @@
 import React from "react";
 import { Title, Text } from "@mantine/core";
 
-import { getDayFrom } from "../../../../utils/date";
 import { IBlogType } from "../blog";
+import { getDayFrom } from "../../../../utils/date";
 import { CapitalizeFirst } from "../../../../utils/string";
+
+import style from "../index.module.scss";
 
 const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
   blogId,
@@ -12,11 +14,8 @@ const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
   createdDate,
 }) => {
   return (
-    <article
-      key={blogId}
-      className="text-gray-700 h-full bg-white sm:max-w-none border-2 border-solid border-gray-100 rounded-lg hover:border-gray-300 hover:text-gray-600 "
-    >
-      <div className="w-full h-[100% - 20px] rounded-t-lg overflow-hidden ">
+    <article key={blogId} className={style.blogCardLarge}>
+      <div className="w-full h-[100% - 20px] overflow-hidden ">
         <img
           className="w-full h-full object-cover"
           // src={imageUrl ? `${baseUrl}/uploads/${imageUrl}` : imageURL}
@@ -29,7 +28,7 @@ const BlogCardLarge: React.FC<Partial<IBlogType>> = ({
         <Text className="text-xs text-zinc-600">
           {getDayFrom(new Date(createdDate!))}
         </Text>
-        <Title lineClamp={1} className="text-lg font-semibold leading-1">
+        <Title lineClamp={1} className="text-lg">
           {CapitalizeFirst(title ?? "")}
         </Title>
         <Text lineClamp={2} className="text-zinc-600">

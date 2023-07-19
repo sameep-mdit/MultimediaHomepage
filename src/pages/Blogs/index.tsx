@@ -7,7 +7,7 @@ import MainWrapper from "../../Layout/MainWrapper";
 
 import BlogCardLarge from "../../component/global/Blog/BlogCardLarge";
 
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useViewportSize } from "@mantine/hooks";
 import { Collapse, Title } from "@mantine/core";
 
 import { Link } from "react-router-dom";
@@ -16,6 +16,10 @@ import PageWrapper from "../../Layout/PageWrapper";
 
 import { Carousel } from "@mantine/carousel";
 import PagesSeeMoreCard from "../../component/global/Cards/PagesSeeMore";
+import {
+  GetCarouselMaxScreens,
+  GetCarouselPercentage,
+} from "../Home/VideoSection";
 
 const BlogPage = () => {
   const [blogs, setBlogs] = React.useState<blogType[]>();
@@ -42,13 +46,7 @@ const BlogPage = () => {
     <MainWrapper>
       {blogs?.map((item, index) => {
         return (
-          <PageWrapper
-            className={`pt-8 ${
-              index % 2 === 0
-                ? "bg-gray-700 text-white"
-                : "bg-gray-500 text-white"
-            }`}
-          >
+          <PageWrapper>
             <BlogComponent
               index={index}
               item={item?.blogs}
@@ -71,6 +69,7 @@ type BlogLayoutType = {
 
 const BlogComponent = ({ item, index, itemName }: BlogLayoutType) => {
   const [opened, { toggle }] = useDisclosure(false);
+  const { width } = useViewportSize();
   return (
     <>
       <div className="flex justify-between mb-4">
@@ -80,8 +79,9 @@ const BlogComponent = ({ item, index, itemName }: BlogLayoutType) => {
         <div className="grid  gap-4">
           <Carousel
             align="start"
-            slideSize="33.333333%"
-            slideGap="sm"
+            slideSize={GetCarouselPercentage(Number(width))}
+            slideGap="xl"
+            slidesToScroll={GetCarouselMaxScreens(Number(width))}
             styles={{
               control: {
                 "&[data-inactive]": {

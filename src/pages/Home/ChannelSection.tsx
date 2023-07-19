@@ -13,40 +13,18 @@ const ChannelSection = () => {
   }, [homePageData]);
 
   return (
-    <PageWrapper className="bg-gray-800 ">
-      <section className=" grid gap-4">
-        <h1 className="text-center text-white">Channels</h1>
+    <PageWrapper className="bg-gray-800 text-white py-8">
+      <section className="grid gap-4">
+        {/* <h1 className="text-center">Channels</h1> */}
 
-        <div className="grid md:grid-cols-2  gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {homePageData?.data?.homepage?.channels.map((channel, idx) => {
             return (
               <ChannelCard
-                key={idx}
+                key={channel.name + idx}
                 channelName={channel.name}
                 imageurl={channel.image}
-                socials={channel?.socials.map((item) => {
-                  return (
-                    <>
-                      <div>
-                        <Text fz="sm" color="dark">
-                          Links
-                        </Text>
-                        <div>
-                          <Link to={item.url}>
-                            <img
-                              className="w-8"
-                              src={
-                                baseUrl + "/uploads/" + item?.logo
-                                //blogDetailPage?.blogCoverPhoto[0].coverphotoUrl
-                              }
-                              alt=""
-                            />
-                          </Link>
-                        </div>
-                      </div>
-                    </>
-                  );
-                })}
+                socials={channel?.socials}
               />
             );
           })}

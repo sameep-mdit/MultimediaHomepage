@@ -3,6 +3,8 @@ import { Text, Title } from "@mantine/core";
 import { getDayFrom } from "../../../../utils/date";
 import { IBlogType } from "../blog";
 
+import style from "../index.module.scss";
+
 export const imageURL =
   "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg";
 
@@ -15,8 +17,8 @@ const BlogCardSmall: React.FC<Partial<IBlogType>> = ({
   console.log(blogCoverPhoto, createdDate);
 
   return (
-    <article className="border w-full  h-full grid grid-cols-3 min-h-32 border-solid bg-white text-black border-gray-200 rounded-lg hover:border-blue-200">
-      <div className="w-full  h-full  overflow-hidden rounded-l-lg">
+    <article className={style.blogCardSmall}>
+      <div className="w-full  h-full  overflow-hidden ">
         <img
           className="w-full h-full object-cover image-hover"
           src={
@@ -28,7 +30,7 @@ const BlogCardSmall: React.FC<Partial<IBlogType>> = ({
         <Text className="text-xs text-zinc-600">
           {getDayFrom(new Date(createdDate!))}
         </Text>
-        <Title lineClamp={1} className="text-lg leading-none">
+        <Title lineClamp={1} className="text-lg">
           {title ?? ""}
         </Title>
         <Text lineClamp={3} className="mt-2">

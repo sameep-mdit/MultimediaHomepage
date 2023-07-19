@@ -1,0 +1,31 @@
+.navItemActive {
+  @apply text-gray-300 text-lg;
+  transition-duration: 0.5s;
+}
+
+.navItem {
+  @apply text-gray-500 text-lg;
+  transition-duration: 0.5s;
+}
+
+.navItem:hover,
+.navItemActive:hover {
+  @apply text-blue-400;
+  transition-duration: 0.3s;
+  scale: 1.2;
+  letter-spacing: 2px;
+  //   transform: translateY(5px);
+}
+
+.navItemsLg {
+  @apply md:flex hidden gap-4 font-semibold md:justify-between;
+  transition-duration: 0.5s;
+
+  &:hover {
+    .navItem {
+      letter-spacing: 1px;
+    }
+    @apply gap-6;
+    transition-duration: 1s;
+  }
+}

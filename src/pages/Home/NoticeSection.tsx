@@ -37,12 +37,14 @@ export default function NoticeSection() {
   if (homePageData?.data?.homepage?.notice.length === 0) return <></>;
 
   return (
-    <div className="notice-animation notice z-20   text-center text-base  font-semibold  bg-[#a2c2d1] w-full p-1 cursor-default">
-      <div className="w-[90%] mx-auto">
+    <div className="notice-animation notice z-20 p-1 text-center font-semibold text-white bg-blue-300 w-full  cursor-default">
+      <div className="mx-auto cursor-pointer">
         {homePageData.data?.homepage?.notice?.[Number(index)] ? (
           <div>
             {HTMLReactParser(
-              homePageData.data?.homepage?.notice?.[Number(index)]?.notice
+              homePageData.data?.homepage?.notice?.[
+                Number(index)
+              ]?.notice?.toLocaleUpperCase()
             )}
           </div>
         ) : undefined}

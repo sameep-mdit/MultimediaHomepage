@@ -1,6 +1,9 @@
 import React from "react";
+
 import NavBar from "../../component/global/Navbar";
 import FooterPage from "../../component/global/Footer";
+
+import style from "./style.module.scss";
 
 type IMainWrapper = {
   children: React.ReactNode;
@@ -8,9 +11,9 @@ type IMainWrapper = {
 
 const MainWrapper: React.FC<IMainWrapper> = ({ children }) => {
   return (
-    <main className="min-h-screen">
+    <main className={style.bgGradiant}>
       <NavBar />
-      <div className="flex-[9] bg-slate-50 overflow-y-scroll ">{children}</div>
+      <div className="min-h-screen">{children}</div>
       <FooterPage />
     </main>
   );

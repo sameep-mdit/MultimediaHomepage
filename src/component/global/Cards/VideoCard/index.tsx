@@ -1,8 +1,8 @@
 import React from "react";
 import ReactPlayer from "react-player";
-import ModelCard from "../../Model";
 import { Text } from "@mantine/core";
 import { CapitalizeFirst } from "../../../../utils/string";
+import ModelCard from "../../Model";
 
 type IVideocard = {
   title: string;
@@ -28,20 +28,13 @@ const VideoCard: React.FC<IVideocard> = ({ title, link }) => {
         className="cursor-pointer"
       >
         <div className="text-white grid">
-          <div className="w-full h-60 pointer-events-none">
+          <div className="w-full h-[300px] pointer-events-none">
             <ReactPlayer
               controls={true}
               width="100%"
               height="100%"
               url={link}
             />
-          </div>
-          <div
-            className={`p-1 px-2 font-semibold duration-100 ${
-              isHover ? "text-zinc-900" : "text-white"
-            }`}
-          >
-            <Text>{CapitalizeFirst(title)}</Text>
           </div>
         </div>
       </article>
